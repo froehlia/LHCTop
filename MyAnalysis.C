@@ -27,51 +27,54 @@
 #include <iostream>
 #include <TH1F.h>
 #include <TLatex.h>
+#include "MyHists.h"
 
 using namespace std;
 
 void MyAnalysis::BuildEvent() {
+  //cout << "BuildEvent 1" << endl;
+  Muons.clear();
+  for (int i = 0; i < NMuon; ++i) {
+    MyMuon muon(Muon_Px[i], Muon_Py[i], Muon_Pz[i], Muon_E[i]);
+    muon.SetIsolation(Muon_Iso[i]);
+    muon.SetCharge(Muon_Charge[i]);
+    Muons.push_back(muon);
+  }
    
-   Muons.clear();
-   for (int i = 0; i < NMuon; ++i) {
-      MyMuon muon(Muon_Px[i], Muon_Py[i], Muon_Pz[i], Muon_E[i]);
-      muon.SetIsolation(Muon_Iso[i]);
-      muon.SetCharge(Muon_Charge[i]);
-      Muons.push_back(muon);
-   }
+  Electrons.clear();
+  for (int i = 0; i < NElectron; ++i) {
+    MyElectron electron(Electron_Px[i], Electron_Py[i], Electron_Pz[i], Electron_E[i]);
+    electron.SetIsolation(Electron_Iso[i]);
+    electron.SetCharge(Electron_Charge[i]);
+    Electrons.push_back(electron);
+  }
    
-   Electrons.clear();
-   for (int i = 0; i < NElectron; ++i) {
-      MyElectron electron(Electron_Px[i], Electron_Py[i], Electron_Pz[i], Electron_E[i]);
-      electron.SetIsolation(Electron_Iso[i]);
-      electron.SetCharge(Electron_Charge[i]);
-      Electrons.push_back(electron);
-   }
+  Photons.clear();
+  for (int i = 0; i < NPhoton; ++i) {
+    MyPhoton photon(Photon_Px[i], Photon_Py[i], Photon_Pz[i], Photon_E[i]);
+    photon.SetIsolation(Photon_Iso[i]);
+    Photons.push_back(photon);
+  }
    
-   Photons.clear();
-   for (int i = 0; i < NPhoton; ++i) {
-      MyPhoton photon(Photon_Px[i], Photon_Py[i], Photon_Pz[i], Photon_E[i]);
-      photon.SetIsolation(Photon_Iso[i]);
-      Photons.push_back(photon);
-   }
+  Jets.clear();
+  for (int i = 0; i < NJet; ++i) {
+    MyJet jet(Jet_Px[i], Jet_Py[i], Jet_Pz[i], Jet_E[i]);
+    jet.SetBTagDiscriminator(Jet_btag[i]);
+    jet.SetJetID(Jet_ID[i]);
+    Jets.push_back(jet);
+  }
    
-   Jets.clear();
-   for (int i = 0; i < NJet; ++i) {
-      MyJet jet(Jet_Px[i], Jet_Py[i], Jet_Pz[i], Jet_E[i]);
-      jet.SetBTagDiscriminator(Jet_btag[i]);
-      jet.SetJetID(Jet_ID[i]);
-      Jets.push_back(jet);
-   }
+  //cout << "BuildEvent 2" << endl;
+  hadB.SetXYZM(MChadronicBottom_px, MChadronicBottom_py, MChadronicBottom_pz, 4.8);
+  lepB.SetXYZM(MCleptonicBottom_px, MCleptonicBottom_py, MCleptonicBottom_pz, 4.8);
+  hadWq.SetXYZM(MChadronicWDecayQuark_px, MChadronicWDecayQuark_py, MChadronicWDecayQuark_pz, 0.0);
+  hadWqb.SetXYZM(MChadronicWDecayQuarkBar_px, MChadronicWDecayQuarkBar_py, MChadronicWDecayQuarkBar_pz, 0.0);
+  lepWl.SetXYZM(MClepton_px, MClepton_py, MClepton_pz, 0.0);
+  lepWn.SetXYZM(MCneutrino_px, MCneutrino_py, MCneutrino_pz, 0.0);
+  met.SetXYZM(MET_px, MET_py, 0., 0.);
    
-   hadB.SetXYZM(MChadronicBottom_px, MChadronicBottom_py, MChadronicBottom_pz, 4.8);
-   lepB.SetXYZM(MCleptonicBottom_px, MCleptonicBottom_py, MCleptonicBottom_pz, 4.8);
-   hadWq.SetXYZM(MChadronicWDecayQuark_px, MChadronicWDecayQuark_py, MChadronicWDecayQuark_pz, 0.0);
-   hadWqb.SetXYZM(MChadronicWDecayQuarkBar_px, MChadronicWDecayQuarkBar_py, MChadronicWDecayQuarkBar_pz, 0.0);
-   lepWl.SetXYZM(MClepton_px, MClepton_py, MClepton_pz, 0.0);
-   lepWn.SetXYZM(MCneutrino_px, MCneutrino_py, MCneutrino_pz, 0.0);
-   met.SetXYZM(MET_px, MET_py, 0., 0.);
-   
-   EventWeight *= weight_factor;
+  EventWeight *= weight_factor;
+  //cout << "BuildEvent 3" << endl;
    
 }
 
@@ -88,9 +91,13 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/) {
    // The SlaveBegin() function is called after the Begin() function.
    // When running with PROOF SlaveBegin() is called on each slave server.
    // The tree argument is deprecated (on PROOF 0 is passed).
+  //cout << "SlaveBegin 1" << endl;
    
    TString option = GetOption();
-   
+   //cout << "SlaveBegin 2" << endl;
+   BuildHistmap();
+   //cout << "SlaveBegin 3" << endl;
+   /*
    // Try to change the bin ranges such that the spectrum peaks at the mass of the Z boson.
    h_Mmumu = new TH1F("Mmumu", "Invariant di-muon mass", 90, 0, 90);
    h_Mmumu->SetXTitle("m_{#mu#mu}");
@@ -103,7 +110,13 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/) {
    h_NMuon->Sumw2();
    histograms.push_back(h_NMuon);
    histograms_MC.push_back(h_NMuon);
-   
+   */
+}
+
+void MyAnalysis::FillHistos(MyHists & h){
+
+  //TODO: Add more histos!
+  h.h_NMuon->Fill(NMuon, EventWeight);
 }
 
 Bool_t MyAnalysis::Process(Long64_t entry) {
@@ -124,15 +137,17 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    // Use fStatus to set the return value of TTree::Process().
    //
    // The return value is currently not used.
-   
+  //cout << "BeginProcess" << endl;
    ++TotalEvents;
    
    GetEntry(entry);
+   //cout << "Got Entry" << endl;
    
    if (TotalEvents % 10000 == 0)
       cout << "Next event -----> " << TotalEvents << endl;
    
    BuildEvent();
+   //cout << "Built Event" << endl;
    
    double MuonPtCut = 25.;
    double MuonRelIsoCut = 0.10;
@@ -160,6 +175,11 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    
    int N_IsoMuon = 0;
    MyMuon *muon1, *muon2;
+
+   //cout << "Going to fill hists" << endl;
+   FillHistos(hists_nocuts);
+   //cout << "Filled Hists" << endl;
+
    
    // Loop over all muons. The number of isolated muons 'N_IsoMuon' is summed up. 
    // The leading muon and the second leading muon get defined by pointing to the 
@@ -174,7 +194,7 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    
    // The number of isolated muons is filled into a histogram. 
    // Have a look at the plot to find the number of isolated muons in each event.
-   h_NMuon->Fill(N_IsoMuon, EventWeight);
+   //h_NMuon->Fill(N_IsoMuon, EventWeight);
    
    // The invariant mass spectrum of the leading and second leading muon is
    // filled into a histogram. Implement an additional requirement to plot the
@@ -182,7 +202,7 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    // the bin ranges (in 'SlaveBegin' above).
    if (N_IsoMuon > 1 && triggerIsoMu24) {
       if (muon1->Pt()>MuonPtCut) {
-         h_Mmumu->Fill((*muon1 + *muon2).M(), EventWeight);
+	//h_Mmumu->Fill((*muon1 + *muon2).M(), EventWeight);
       }
    }
 
@@ -227,9 +247,12 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    // file to determine the efficiency and the ttbar cross section.
 
 
-
+   //cout << "going to return" << endl;
    return kTRUE;
 }
+
+
+
 
 void MyAnalysis::SlaveTerminate() {
    // The SlaveTerminate() function is called after all entries or objects

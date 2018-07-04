@@ -16,7 +16,8 @@ Plotter::~Plotter() {
   // TODO Auto-generated destructor stub
 }
 
-void Plotter::Plot(std::string filename) {
+//void Plotter::Plot(std::string filename) {
+void Plotter::Plot() {
   //gROOT->Reset();
   //gROOT->SetStyle("Plain");
   TStyle *MyStyle = new TStyle("MyStyle","My Root Styles");
@@ -148,14 +149,23 @@ void Plotter::Plot(std::string filename) {
          
       l->Draw("same");
     }
-    c->Print((std::string("plots/")+filename+std::string("_")+plotname+std::string(".pdf")).c_str());
+    //c->Print((std::string("plots/")+filename+std::string("_")+plotname+std::string(".pdf")).c_str());
+    TString myoutname = "plots/" + outname + "_" + plotname + ".pdf";
+    c->Print(myoutname);
     if (i == 0 && N_histos > 1) {
-      c->Print((filename+std::string("(")).c_str());
-    } else if (i > 0 && i == N_histos - 1)
-      c->Print((filename+std::string(")")).c_str());
-    else
-      c->Print(filename.c_str());
-      
+      TString s = outname + "(";
+      //c->Print((filename+std::string("(")).c_str());
+      c->Print(s);
+    }
+    else if (i > 0 && i == N_histos - 1){
+      TString s = outname + ")";
+      //c->Print((filename+std::string(")")).c_str());
+      c->Print(s);
+    }
+    else{
+      c->Print(outname+".pdf");
+    }
+    
   }
-   
+  
 }

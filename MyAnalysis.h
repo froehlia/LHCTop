@@ -12,14 +12,17 @@
 #include <TFile.h>
 #include <TChain.h>
 #include <TSelector.h>
+#include <TString.h>
 #include <TH1F.h>
 #include <TLorentzVector.h>
 #include <vector>
+#include <iostream>
 
 #include "MyJet.h"
 #include "MyMuon.h"
 #include "MyElectron.h"
 #include "MyPhoton.h"
+#include "MyHists.h"
 
 using namespace std;
 
@@ -29,6 +32,32 @@ using namespace std;
 
 class MyAnalysis: public TSelector {
 public:
+
+
+   
+   // ++++++++++++++++++++++++++++++++++++++++++++
+   // ++++++++ ONLY TOUCH THIS SMALL PART ++++++++
+   // ++++++++++++++++++++++++++++++++++++++++++++
+
+   MyHists hists_nocuts;
+
+   std::map<TString, MyHists*> histmap;
+   bool histmap_init = false;
+   void BuildHistmap(){
+     histmap["nocuts"] = &hists_nocuts;
+
+
+     histmap_init = true;
+   }
+
+   // ++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
    TTree *fChain; //!pointer to the analyzed TTree or TChain
    
    // Declaration of leaf types
@@ -151,6 +180,18 @@ public:
    virtual void SlaveBegin(TTree *tree);
    virtual void Init(TTree *tree);
    virtual Bool_t Notify();
+   virtual void FillHistos(MyHists & h);
+
+   virtual MyHists *GetHists(TString name){
+     if(histmap_init) return histmap[name];
+     else throw runtime_error("In virtual std::map<TString, MyHists> GetHists(): Histmap was not initialized, call MyAnalysis::BuildHistmap before!");
+   }
+
+   virtual std::map<TString, MyHists*> *GetHistmap(){
+     if(histmap_init) return &histmap;
+     else throw runtime_error("In virtual std::map<TString, MyHists> GetHistmap(): Histmap was not initialized, call MyAnalysis::BuildHistmap before!");
+   }
+
    virtual Bool_t Process(Long64_t entry);
    virtual Int_t GetEntry(Long64_t entry, Int_t getall = 0) {
       return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0;
@@ -184,17 +225,8 @@ public:
    float weight_factor;
    float SF_b;
    
-   // +++++++++++++++++++++++++++++++++++++++++
-   // ++++++++ define your histos here ++++++++
-   // +++++++++++++++++++++++++++++++++++++++++
-   TH1F *h_Mmumu;
-   TH1F *h_NMuon;
-   
-   vector<TH1F*> histograms;
-   vector<TH1F*> histograms_MC;
    
 };
-
 #endif
 
 #ifdef MyAnalysis_cxx
