@@ -32,7 +32,7 @@ int main() {
      TString outname = it->first;
      Plotter p, p_mc;
      p.SetOutname(outname);
-     p_mc.SetOutname(outname);
+     p_mc.SetOutname(outname+"_MC");
      Plotters.emplace_back(p);
      Plotters_MC.emplace_back(p_mc);
    }
