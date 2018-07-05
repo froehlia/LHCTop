@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: Anleitung.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: theorie.aux
+A level-1 auxiliary file: lhc.aux
+A level-1 auxiliary file: dataset.aux
+A level-1 auxiliary file: dataformat.aux
+A level-1 auxiliary file: analysis.aux
+A level-1 auxiliary file: eval.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--empty author in ATLAS:2014wva
+Warning--empty journal in ATLAS:2014wva
+Warning--empty year in combinedhera
+Warning--empty journal in Kidonakis:1449411
+Warning--empty journal in Lancaster:2011wr
+Warning--empty publisher in Kleinknecht:1984jt
+Warning--empty publisher in Grupen:PD
+Warning--empty author in duoplasma
+You've used 25 entries,
+            1791 wiz_defined-function locations,
+            592 strings with 6554 characters,
+and the built_in function-call counts, 4491 in all, are:
+= -- 396
+> -- 143
+< -- 1
++ -- 61
+- -- 36
+* -- 248
+:= -- 729
+add.period$ -- 72
+call.type$ -- 25
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 33
+duplicate$ -- 218
+empty$ -- 483
+format.name$ -- 36
+if$ -- 1005
+int.to.chr$ -- 0
+int.to.str$ -- 25
+missing$ -- 25
+newline$ -- 124
+num.names$ -- 22
+pop$ -- 70
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 90
+stack$ -- 0
+substring$ -- 271
+swap$ -- 28
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 8
+while$ -- 37
+width$ -- 27
+write$ -- 256
+(There were 8 warnings)

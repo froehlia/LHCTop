@@ -1,0 +1,100 @@
+\section{Durchf\"uhrung}
+\label{tasks}
+\subsection{Vorbereitung (vor Praktikumsbeginn)}
+Wie \"ublich beginnt auch dieser Praktikumsversuch mit einer Vorbesprechung, in der zun\"achst der theoretische Hintergrund der Analyse diskutiert wird. Im Folgenden finden Sie einen Fragenkatalog, der Ihnen einen Eindruck des Erwartungshorizonts vermittelt.\\
+\underline{Physik des Top-Quarks}
+\begin{itemize}
+	\item Wann und wo wurde das Top-Quark entdeckt?
+	\item Wie schwer ist das Top-Quark? Wie schwer ist es verglichen mit den anderen Teilchen des Standard-Modells?
+	\item Wie werden Top-Quarks (sowohl einzeln als auch in Paaren) am Large-Hadron-Collider erzeugt?
+	\item Wie zerfallen Top-Quarks? Was versteht man unter dem voll-hadronischen, semi-leptonischen und dileptonischen Zerfallskanal?
+	\item Welche Zerfallsprodukte des Top-Quarks k\"onnen mit einem Detektor tats\"achlich gemessen werden?
+	\item Welche anderen (Untergrund)Prozesse ergeben im Detektor wom\"oglich dieselbe Signatur wie ein $t\bar{t}$-Ereignis?
+	%\item wie berechnet man den inklusiven Wirkungsquerschnitt f\"ur $t\bar{t}$-Produktion?
+\end{itemize}
+\underline{Detektor-Physik}
+\begin{itemize}
+	\item Wie misst man den Impuls eines geladenen Teilchens?
+	\item Wie wird die Energie von Elektronen und Photonen gemessen?
+	\item Wie wird die Energie von Hadronen gemessen?
+	\item Warum wird ein separates Myon-System ben\"otigt? Wie funktioniert es?
+\end{itemize}
+\underline{Wichtige Gr\"o\ss{}en an modernen Collidern}
+\begin{itemize}
+	\item Was ist (integrierte) Luminosit\"at? Wie ist sie definiert?
+	\item Was versteht man unter dem Transversalimpuls $p_{T}$?
+	\item Was ist die Pseudorapidit\"at $\eta$ definiert? Warum wird diese Gr\"o\ss{}e gegen\"uber dem Polarwinkel $\theta$ bevorzugt?
+	\item Was versteht man unter fehlender transversaler Energie und woher kommt sie?
+	\item Was versteht man unter dem sogenannten b-tagging?
+\end{itemize}
+
+
+\subsection{Aufgaben}
+F\"ur die Durchf\"uhrung des Versuchs wird Ihnen ein Unix-Rechner zur Verf\"ugung gestellt. Sie loggen sich auf einem Gast-Konto ein. Die ben\"otigte Software befindet sich bereits auf dem Rechner. \"Offnen Sie eine Konsole und erstellen Sie sich einen Ordner, z.B.:
+\begin{lstlisting}
+mkdir mydir
+cd mydir
+\end{lstlisting}
+In diesem Ordner f\"uhren Sie den Versuch durch und speichern alle Ergebnisse.
+%Hinweis: Sie loggen sich mit einem Gast-Konto ein. Bringen Sie bitte au\ss{}erdem f\"ur Ihre Auswertung einen USB-Stick mit, um Ihre Ergebnisse zu sichern. Die zur Verf\"ugung gestellten Rechner arbeiten im Offline-Betrieb.
+\subsubsection{Event Displays mit der Fireworks-Software}
+Die Fireworks-Software wird zur graphischen Darstellung von Ereignissen im Detektor verwendet. Kopieren Sie sich die Software wie folgt in Ihren Ordner:
+\begin{lstlisting}
+cp -r /opt/fp/cmsShow-8.1 .
+cp -r /opt/fp/sources .
+\end{lstlisting}
+Sie betrachten im Folgenden ein Sample mit 400 simulierten $t\bar{t}$-Ereignissen. \"Offnen Sie das $t\bar{t}$-Sample wie folgt:
+\begin{lstlisting}
+cd cmsShow-8.1
+./cmsShow ../sources/ttbar.root
+\end{lstlisting}
+Machen Sie sich nun mit der Software vertraut:
+\begin{itemize}
+\item betrachten Sie verschiedene Ereignisse
+\item machen Sie sich klar, welche Anzeigen welche Objekte darstellen
+\item betrachten Sie Ereignisse in der Rho-Z-Achse sowie im 3D-Tower.
+\end{itemize}
+Versuchen Sie nun jeweils ein Ereignis f\"ur den voll-hadronischen, semi-leptonen und di-leptonen Zerfallskanal zu klassifizieren. Benutzen Sie daraufhin die Filter-Funktion. Passen Sie diese so an, dass m\"oglichst ausschlie{\ss}lich $t\bar{t}$-Ereignisse im semi-leptonischen Zerfallskanal betrachtet werden. Speichern Sie (mindestens) ein Event-Display f\"ur Ihre Auswertung!\\
+\\
+Betrachten Sie nun Event-Displays aus einem Single-Top-Sample:
+\begin{lstlisting}
+./cmsShow ../sources/singletop.root
+\end{lstlisting}
+K\"onnen Sie Unterschiede feststellen, die Ihnen bei der Selektion von $t\bar{t}$-Ereignissen helfen? Speichern Sie f\"ur Ihre Auswertung ein Event-Display mit einem Single-Top-Ereignis.
+
+\subsubsection{Einf\"uhrung in das Analyse-Framework}
+Unser Analyse-Framework ist bereits voll funktionsf\"ahig, jedoch macht es bislang nicht viel. Setzen Sie das Analyse-Framework auf und f\"uhren Sie es ein erstes Mal aus:
+\begin{itemize}
+	%\item erstellen Sie zun\"achst im Home-Verzeichnis einen neuen Ordner
+	\item entpacken Sie dazu das Paket TopWQS.tar.gz mit 'tar -xf sources/TopWQS.tar.gz' in Ihren Ordner
+	\item kompilieren Sie mit 'make'. Das Kompilieren erstellt Ihnen eine ausf\"uhrbare Datei \textbf{example.x}
+	\item nun kann das Framework ausgef\"uhrt werden mit './example.x'
+\end{itemize}
+Das Programm schreibt bereits Output-Dateien (wie z.B. \textbf{results.pdf}), die zwei Verteilungen der Analyse beinhalten. \"Offnen Sie die Dateien mit einem PDF-Viewer, wie z.B. \textbf{okular}. Im Folgenden arbeiten Sie haupts\"achlich in den Dateien 'MyAnalysis.C', 'MyAnalysis.h' und 'example.C'. \"Offnen Sie diese mit einem Editor, z.B. Emacs, mit 'emacs MyAnalysis.C'.
+
+\subsubsection{Aufgabe 1: Warm-Up}
+In der Datei \textbf{results.pdf} finden Sie die Verteilung der invarianten Masse zweier Myonen (mit beliebiger Ladung) sowie die Anzahl der Myonen in einem Ereignis. 
+\begin{itemize}
+	\item Finden Sie heraus, wie viele Ereignisse in den Daten mehr als ein isoliertes und rekonstruiertes Myon haben. Aus welchen Prozessen stammen diese zus\"atzlichen Myonen? Betrachten Sie dazu die jeweiligen Monte-Carlo-Samples.
+	\item Bestimmen Sie die invariante Masse zweier Myonen mit unterschiedlicher Ladung. (Hinweis: Suchen Sie in der \texttt{MyMuon} Klasse nach dem Befehl, welche die Ladung des Myons ausgibt. Fordern Sie anschlie\ss{}end in einer If-Bedingung mindestens zwei isolierte Myonen mit unterschiedlicher Ladung)
+	\item Stellen Sie die Verteilung der invarianten Masse von zwei Myonen unterschiedlicher Ladung in einem Histogramm graphisch dar. Nutzen Sie dazu das bereits vorhandene Histogramm der invarianten Masse zweier Myonen. Probieren sie verschiedene Bin-Gr\"o\ss{}en sowie unterschiedliche Achsen-Reichweiten aus. (Hinweis: in der Definition eines Histogramms, wie z.B. 'h\_Mmumu = new TH1F("Mmumu", "\,Invariant di-muon mass", n, x$_1$, x$_2$);' steht n f\"ur die Anzahl der Bins, x$_1$ f\"ur die erste und x$_2$ f\"ur die letzte Bin-Grenze.) \\ Was f\"allt Ihnen an der Verteilung auf? Vergleichen Sie sowohl Daten als auch die jeweiligen Monte-Carlo-Prozesse.
+\end{itemize}
+\subsubsection{Aufgabe 2: Eigenschaften von Top-Quarks-Ereignissen}
+In diesem Aufgabenteil beginnen wir mit den ersten Schritten hinsichtlich einer realen Messung mit Top-Quark-Ereignissen. Dazu m\"ussen wir verstehen, wie man Top-Quark-Ereignisse effizient selektiert und gleichzeitig den Anteil von Ereignissen ohne Top-Quarks (sogenannte Untergrund-Ereignisse) reduziert.
+\begin{itemize}
+	\item Fordern Sie von nun an f\"ur alle Verteilungen mindestens ein isoliertes Myon.
+	\item Versuchen Sie Variablen zu finden, die besonders sensitiv sind um zwischen Signal und Untergrund zu unterscheiden. Geeignete Variablen k\"onnten z.B. die Anzahl von Jets, der Transversalimpuls des 1., 2., 3. Jets, der Transversalimpuls von Myonen, fehlende transversale Energie, die Anzahl von b-Jets (b-tagging), der Transversalimpuls des 1., 2. b-Jets sowie Winkelverteilungen ($\eta$) von (b-)Jets und Myonen sein. F\"ullen Sie diese Verteilungen dazu jeweils in ein eigenes Histogramm. Orientieren Sie sich dazu an den bereits vorhandenen Histogrammen. Vergessen Sie nicht Ihre Histogramme in \texttt{MyAnalysis.h} zu definieren. \\
+	 Vergleichen Sie in Ihren erstellten Histogrammen Signal mit Untergrund!
+	\item Wenden Sie Schnitte auf verschiedene Variablen an um das Verh\"altnis aus Signal zu Untergrund zu verbessern. Es empfiehlt sich dabei iterativ vorzugehen, d.h. Sie wenden z.B. einen Schnitt auf mindestens 2 Jets an und \"uberpr\"ufen, was dieser Schnitt f\"ur Folgen hat, indem Sie sich wieder alle Verteilungen ansehen. Dann wenden Sie sich der n\"achsten Variable (bzw. dem n\"achsten Schnitt) zu und verfahren genauso. Speichern Sie die Histogramme vor und nach den Schnitten. \\
+	\item Wie viele Ereignisse verlieren Sie durch die Anwendung ihrer Selektion (Effizienz) und wie viele Ereignisse aus Untergrund-Prozessen? Welcher Untergrund ist besonders unangenehm? Lassen Sie sich sowohl die Effizienz als auch die Reinheit nach jedem Schnitt anzeigen. (Hinweis: f\"ugen Sie eine Variable, z.B. einen \textbf{float}, ein, die der Anzahl ihrer selektierten Ereignisse entspricht. Addieren Sie dazu das \textbf{Event\-Weight} auf Ihre eingef\"uhrte Variable nach der vollen Selektion f\"ur jedes Ereignis mit dem \grqq{}+=\grqq{} Operator.)
+\end{itemize}
+
+\subsubsection{Aufgabe 3: Messung des Wirkungsquerschnitts}
+Ziel dieser Aufgabe ist die Berechnung des Wirkungsquerschnitts der Top-Antitop-Quark-Produktion am LHC. Die ben\"otigten Gr\"o\ss{}en bestimmen Sie dazu Schritt f\"ur Schritt:
+\begin{itemize}
+	\item F\"ur die Berechung des Wirkungsquerschnitts ben\"otigen Sie die Akzeptanz $\epsilon$. Die Akzeptanz beinhaltet die Tatsache, dass wir uns auf den semileptonischen Zerfalls\-kanal mit einem Myon im Endzustand beschr\"anken. Dieses Verzweigungsverh"altnis ist bekannt und kann aus der Simulation genommen werden. Dar\"uber hinaus beinhaltet die Akzeptanz alle Selektions-Schnitte, die Sie in Aufgabe 2 eingef\"uhrt haben. \\Sie berechnen die Akzeptanz aus dem Verh\"altnis der Anzahl selektierter Top-Quark-Ereignisse (nach allen Schnitten) und der Anzahl aller generierten Top-Quark-Er\-eig\-nissen.
+	\item Der Wirkungsquerschnitt wird mit Hilfe echter Daten berechnet. Allerdings beinhalten die Daten, auch nach Anwendung Ihrer Selektion, noch Untergrund-Ereignisse, die zur Berechnung des Wirkungsquerschnitts nicht mitgez\"ahlt werden d\"urfen. Wir vertrauen der Simulation insofern, dass sie die korrekte Anzahl von Untergrund-Ereignissen nach der Selektion vorhersagt. Bestimmen Sie die Anzahl an Top-Antitop-Quark-Ereignissen in den Daten, indem Sie die erwartete Anzahl von Untergrund-Ereignissen von den Daten-Ereignissen subtrahieren.
+	\item Nun k\"onnen Sie den Wirkungsquerschnitt mit folgender Formel bestimmen: $\sigma_{t\bar{t}} = \frac{N^{data} - N^{bg}}{\epsilon \cdot L}$. Geben Sie einen Fehler auf Ihre Messung an! (Hinweis: Nehmen Sie f\"ur die Luminosit\"at einen Fehler von 5\% an)
+	\item Vergleichen Sie ihr Resultat mit einem offiziellen Ergebnis von ATLAS oder CMS (z.B. http://arxiv.org/pdf/1108.3773.pdf)
+\end{itemize}
+
