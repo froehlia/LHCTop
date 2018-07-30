@@ -8,8 +8,8 @@ public:
   virtual ~MyHists();
 
   //std::unique_ptr<TH1F> h_Mmumu, h_NMuon;
-  TH1F /**h_Mmumu,*/ *h_NMuon;
-  //std::vector<std::unique_ptr<TH1F>> get_histvec();
+  TH1F *h_NMuon, *h_MuonPt, *h_MuonEta, *h_MuonPhi, *h_NJets, *h_Jet1_pt, *h_Jet2_pt, *h_NbJets, *h_bJet1_pt, *h_bJet2_pt;
+
   std::vector<TH1F*> get_histvec();
 
 };

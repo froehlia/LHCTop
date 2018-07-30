@@ -14,14 +14,14 @@ int main() {
    // This map stores all samples to run over
    std::map<TString, TString> processes;
    processes["Data"] = "data";
-   processes["TTbar"] = "ttbar";
    processes["Wjets"] = "wjets";
    processes["DY"] = "dy";
+   processes["TTbar"] = "ttbar";
    processes["WW"] = "ww";
    processes["WZ"] = "wz";
    processes["ZZ"] = "zz";
    processes["QCD"] = "qcd";
-   processes["single Top"] = "single_top";
+    processes["single Top"] = "single_top";
 
    // Set up plotters
    std::vector<Plotter> Plotters, Plotters_MC;  

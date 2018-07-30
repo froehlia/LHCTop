@@ -7,6 +7,8 @@
 
 #include "Plotter.h"
 
+using namespace std;
+
 Plotter::Plotter() {
   // TODO Auto-generated constructor stub
    
@@ -64,8 +66,10 @@ void Plotter::Plot() {
    
   //gROOT->ForceStyle();
    
+  //Draw Histogramms with log y-axis
   bool DrawLog = true;
 
+ 
   for (int i = 0; i < N_histos; ++i) {
       
     THStack *hs;
@@ -124,6 +128,7 @@ void Plotter::Plot() {
     std::string plotname;
     if (data.size() > 0) {
       plotname = std::string(data.at(0).at(i)->GetName());
+      data.at(0).at(i)->SetMinimum(0.15);
       data.at(0).at(i)->SetMaximum(5 * data.at(0).at(i)->GetMaximum());
       data.at(0).at(i)->GetXaxis()->SetTitleOffset(1.3);
       data.at(0).at(i)->GetYaxis()->SetTitleOffset(1.3);

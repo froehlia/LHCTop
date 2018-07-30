@@ -11,18 +11,45 @@ using namespace std;
 MyHists::MyHists(){
 
   // Set up all the histograms
-
-
-   // Try to change the bin ranges such that the spectrum peaks at the mass of the Z boson.
-  /*
-  h_Mmumu = new TH1F("Mmumu", "Invariant di-muon mass", 90, 0, 90);
-  h_Mmumu->SetXTitle("M_{#mu#mu} [GeV]");
-  h_Mmumu->Sumw2();
-  */
   h_NMuon = new TH1F("NMuon", "Number of muons", 7, 0, 7);
   h_NMuon->SetXTitle("No. Muons");
   h_NMuon->Sumw2();
 
+  h_MuonPt = new TH1F("MuonPt", "Muon p_{T}", 20, 0, 200);
+  h_MuonPt -> SetXTitle("Muon p_{T}");
+  h_MuonPt -> Sumw2();  
+
+  h_MuonEta = new TH1F("MuonEta", "Muon Pseudorapidity", 20, -3.5, 3.5);
+  h_MuonEta -> SetXTitle("Muon Pseudorapidity");
+  h_MuonEta -> Sumw2(); 
+
+  h_MuonPhi = new TH1F("MuonPhi", "Muon #phi", 20, -3.5, 3.5);
+  h_MuonPhi -> SetXTitle("Muon #phi");
+  h_MuonPhi -> Sumw2(); 
+
+  h_NJets = new TH1F("NJets", "Number of jets", 9, 0, 9);
+  h_NJets -> SetXTitle("No. Jets");
+  h_NJets -> Sumw2(); 
+
+  h_Jet1_pt = new TH1F("Jet1_Pt", "leading jet pT", 20, 0, 200);
+  h_Jet1_pt -> SetXTitle("leading jet p_{T}");
+  h_Jet1_pt -> Sumw2();
+
+  h_Jet2_pt = new TH1F("Jet2_Pt", "second jet pT", 20, 0, 200);
+  h_Jet2_pt -> SetXTitle("second jet p_{T}");
+  h_Jet2_pt -> Sumw2();
+
+  h_NbJets = new TH1F("NbJets", "Number of b-tagged jets", 9, 0, 9);
+  h_NbJets -> SetXTitle("No. b-tagged Jets");
+  h_NbJets -> Sumw2(); 
+
+  h_bJet1_pt = new TH1F("bJet1_Pt", "leading b-tagged jet pT", 20, 0, 200);
+  h_bJet1_pt -> SetXTitle("leading b-tagged jet p_{T}");
+  h_bJet1_pt -> Sumw2();
+
+  h_bJet2_pt = new TH1F("bJet2_Pt", "second b-tagged jet pT", 20, 0, 200);
+  h_bJet2_pt -> SetXTitle("second b-tagged jet p_{T}");
+  h_bJet2_pt -> Sumw2();
 
 }
 
@@ -30,13 +57,39 @@ MyHists::~MyHists(){
   delete h_NMuon;
 }
 
-//std::vector<std::unique_ptr<TH1F>> MyHists::get_histvec(){
 std::vector<TH1F*> MyHists::get_histvec(){
   gErrorIgnoreLevel = 2002;
   std::vector<TH1F*> vec;
-  //vec.emplace_back(h_Mmumu);
+  
   TH1F* NMuon = (TH1F*)h_NMuon->Clone();
   vec.emplace_back(NMuon);
+  
+  TH1F* MuonPt = (TH1F*)h_MuonPt->Clone();
+  vec.emplace_back(MuonPt);
+
+  TH1F* MuonEta = (TH1F*)h_MuonEta->Clone();
+  vec.emplace_back(MuonEta);
+
+  TH1F* MuonPhi = (TH1F*)h_MuonPhi->Clone();
+  vec.emplace_back(MuonPhi);
+
+  TH1F* NJets = (TH1F*)h_NJets->Clone();
+  vec.emplace_back(NJets);
+
+  TH1F* Jet1_Pt = (TH1F*)h_Jet1_pt->Clone();
+  vec.emplace_back(Jet1_Pt);
+  
+  TH1F* Jet2_Pt = (TH1F*)h_Jet2_pt->Clone();
+  vec.emplace_back(Jet2_Pt);  
+
+  TH1F* NbJets = (TH1F*)h_NbJets->Clone();
+  vec.emplace_back(NbJets);
+
+  TH1F* bJet1_Pt = (TH1F*)h_bJet1_pt->Clone();
+  vec.emplace_back(bJet1_Pt);
+  
+  TH1F* bJet2_Pt = (TH1F*)h_bJet2_pt->Clone();
+  vec.emplace_back(bJet2_Pt);  
 
   return vec;
 }
