@@ -214,6 +214,7 @@ public:
    virtual void Terminate();
    
    void BuildEvent();
+   void PrintModule(Long64_t entry);
    
    int TotalEvents;
    vector<MyJet> Jets;

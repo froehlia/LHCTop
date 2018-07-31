@@ -35,9 +35,25 @@ MyHists::MyHists(){
   h_Jet1_pt -> SetXTitle("leading jet p_{T}");
   h_Jet1_pt -> Sumw2();
 
+  h_Jet1_Eta = new TH1F("Jet1_Eta", "leading jet #eta", 20, -3.5, 3.5);
+  h_Jet1_Eta -> SetXTitle("leading jet #eta");
+  h_Jet1_Eta -> Sumw2();
+
+  h_Jet1_Phi = new TH1F("Jet1_Phi", "leading jet #phi", 20, -3.5, 3.5);
+  h_Jet1_Phi -> SetXTitle("leading jet #phi");
+  h_Jet1_Phi -> Sumw2();
+
   h_Jet2_pt = new TH1F("Jet2_Pt", "second jet pT", 20, 0, 200);
   h_Jet2_pt -> SetXTitle("second jet p_{T}");
   h_Jet2_pt -> Sumw2();
+
+  h_Jet2_Eta = new TH1F("Jet2_Eta", "second jet #eta", 20, -3.5, 3.5);
+  h_Jet2_Eta -> SetXTitle("second jet #eta");
+  h_Jet2_Eta -> Sumw2();
+
+  h_Jet2_Phi = new TH1F("Jet2_Phi", "second jet #phi", 20, -3.5, 3.5);
+  h_Jet2_Phi -> SetXTitle("second jet #phi");
+  h_Jet2_Phi -> Sumw2();
 
   h_NbJets = new TH1F("NbJets", "Number of b-tagged jets", 9, 0, 9);
   h_NbJets -> SetXTitle("No. b-tagged Jets");
@@ -47,9 +63,25 @@ MyHists::MyHists(){
   h_bJet1_pt -> SetXTitle("leading b-tagged jet p_{T}");
   h_bJet1_pt -> Sumw2();
 
+  h_bJet1_Eta = new TH1F("bJet1_Eta", "leading b-tagged jet #eta", 20, -3.5, 3.5);
+  h_bJet1_Eta -> SetXTitle("leading b-tagged jet #eta");
+  h_bJet1_Eta -> Sumw2();
+
+  h_bJet1_Phi = new TH1F("bJet1_Phi", "leading b-tagged jet #phi", 20, -3.5, 3.5);
+  h_bJet1_Phi -> SetXTitle("leading b-tagged jet #phi");
+  h_bJet1_Phi -> Sumw2();
+
   h_bJet2_pt = new TH1F("bJet2_Pt", "second b-tagged jet pT", 20, 0, 200);
   h_bJet2_pt -> SetXTitle("second b-tagged jet p_{T}");
   h_bJet2_pt -> Sumw2();
+
+  h_bJet2_Eta = new TH1F("bJet2_Eta", "second b-tagged jet #eta", 20, -3.5, 3.5);
+  h_bJet2_Eta -> SetXTitle("second b-tagged jet #eta");
+  h_bJet2_Eta -> Sumw2();
+
+  h_bJet2_Phi = new TH1F("bJet2_Phi", "second b-tagged jet #phi", 20, -3.5, 3.5);
+  h_bJet2_Phi -> SetXTitle("second b-tagged jet #phi");
+  h_bJet2_Phi -> Sumw2();
 
 }
 
@@ -78,9 +110,21 @@ std::vector<TH1F*> MyHists::get_histvec(){
 
   TH1F* Jet1_Pt = (TH1F*)h_Jet1_pt->Clone();
   vec.emplace_back(Jet1_Pt);
-  
+
+  TH1F* Jet1_Eta = (TH1F*)h_Jet1_Eta->Clone();
+  vec.emplace_back(Jet1_Eta);
+
+  TH1F* Jet1_Phi = (TH1F*)h_Jet1_Phi->Clone();
+  vec.emplace_back(Jet1_Phi);  
+
   TH1F* Jet2_Pt = (TH1F*)h_Jet2_pt->Clone();
   vec.emplace_back(Jet2_Pt);  
+
+  TH1F* Jet2_Eta = (TH1F*)h_Jet2_Eta->Clone();
+  vec.emplace_back(Jet2_Eta);
+
+  TH1F* Jet2_Phi = (TH1F*)h_Jet2_Phi->Clone();
+  vec.emplace_back(Jet2_Phi);
 
   TH1F* NbJets = (TH1F*)h_NbJets->Clone();
   vec.emplace_back(NbJets);
@@ -88,8 +132,20 @@ std::vector<TH1F*> MyHists::get_histvec(){
   TH1F* bJet1_Pt = (TH1F*)h_bJet1_pt->Clone();
   vec.emplace_back(bJet1_Pt);
   
+  TH1F* bJet1_Eta = (TH1F*)h_bJet1_Eta->Clone();
+  vec.emplace_back(bJet1_Eta);
+
+  TH1F* bJet1_Phi = (TH1F*)h_bJet1_Phi->Clone();
+  vec.emplace_back(bJet1_Phi);
+
   TH1F* bJet2_Pt = (TH1F*)h_bJet2_pt->Clone();
   vec.emplace_back(bJet2_Pt);  
+
+  TH1F* bJet2_Eta = (TH1F*)h_bJet2_Eta->Clone();
+  vec.emplace_back(bJet2_Eta);
+
+  TH1F* bJet2_Phi = (TH1F*)h_bJet2_Phi->Clone();
+  vec.emplace_back(bJet2_Phi);
 
   return vec;
 }

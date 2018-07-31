@@ -41,6 +41,7 @@ int main() {
    
    // Iterate over elements of map to chain all processes
    for(std::map<TString,TString>::iterator it=processes.begin(); it!=processes.end(); ++it){
+   
      MyAnalysis* A = new MyAnalysis();
      std::unique_ptr<TChain> ch;
      ch.reset(new TChain("events"));

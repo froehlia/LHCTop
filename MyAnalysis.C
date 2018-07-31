@@ -32,7 +32,7 @@
 using namespace std;
 
 void MyAnalysis::BuildEvent() {
-  //cout << "BuildEvent 1" << endl;
+
   Muons.clear();
   for (int i = 0; i < NMuon; ++i) {
     MyMuon muon(Muon_Px[i], Muon_Py[i], Muon_Pz[i], Muon_E[i]);
@@ -64,7 +64,6 @@ void MyAnalysis::BuildEvent() {
     Jets.push_back(jet);
   }
    
-  //cout << "BuildEvent 2" << endl;
   hadB.SetXYZM(MChadronicBottom_px, MChadronicBottom_py, MChadronicBottom_pz, 4.8);
   lepB.SetXYZM(MCleptonicBottom_px, MCleptonicBottom_py, MCleptonicBottom_pz, 4.8);
   hadWq.SetXYZM(MChadronicWDecayQuark_px, MChadronicWDecayQuark_py, MChadronicWDecayQuark_pz, 0.0);
@@ -74,8 +73,6 @@ void MyAnalysis::BuildEvent() {
   met.SetXYZM(MET_px, MET_py, 0., 0.);
    
   EventWeight *= weight_factor;
-  //cout << "BuildEvent 3" << endl;
-   
 }
 
 void MyAnalysis::Begin(TTree * /*tree*/) {
@@ -89,28 +86,12 @@ void MyAnalysis::Begin(TTree * /*tree*/) {
 
 void MyAnalysis::SlaveBegin(TTree * /*tree*/) {
    // The SlaveBegin() function is called after the Begin() function.
-   // When running with PROOF SlaveBegin() is called on each slave server.
+   // When running with PROOF SlaveBegin() is called on each slave 
    // The tree argument is deprecated (on PROOF 0 is passed).
-  //cout << "SlaveBegin 1" << endl;
-   
+  
    TString option = GetOption();
-   //cout << "SlaveBegin 2" << endl;
+
    BuildHistmap();
-   //cout << "SlaveBegin 3" << endl;
-   /*
-   // Try to change the bin ranges such that the spectrum peaks at the mass of the Z boson.
-   h_Mmumu = new TH1F("Mmumu", "Invariant di-muon mass", 90, 0, 90);
-   h_Mmumu->SetXTitle("m_{#mu#mu}");
-   h_Mmumu->Sumw2();
-   histograms.push_back(h_Mmumu);
-   histograms_MC.push_back(h_Mmumu);
-   
-   h_NMuon = new TH1F("NMuon", "Number of muons", 7, 0, 7);
-   h_NMuon->SetXTitle("No. Muons");
-   h_NMuon->Sumw2();
-   histograms.push_back(h_NMuon);
-   histograms_MC.push_back(h_NMuon);
-   */
 }
 
 void MyAnalysis::FillHistos(MyHists & h){
@@ -125,17 +106,51 @@ void MyAnalysis::FillHistos(MyHists & h){
  
   h.h_NJets->Fill(NJet, EventWeight);
   
-  if(N_Jets >0){  h.h_Jet1_pt->Fill(jet1->Pt(), EventWeight);
+  if(N_Jets >0){  
+    h.h_Jet1_pt->Fill(jet1->Pt(), EventWeight);
+    h.h_Jet1_Eta->Fill(jet1->Eta(), EventWeight);
+    h.h_Jet1_Phi->Fill(jet1->Phi(), EventWeight);
   }
-  if(N_Jets >1){  h.h_Jet2_pt->Fill(jet2->Pt(), EventWeight);
+  if(N_Jets >1){
+    h.h_Jet2_pt->Fill(jet2->Pt(), EventWeight);
+    h.h_Jet2_Eta->Fill(jet2->Eta(), EventWeight);
+    h.h_Jet2_Phi->Fill(jet2->Phi(), EventWeight);
   }
 
   h.h_NbJets->Fill(N_bJets, EventWeight);
-  if(N_bJets >0){  h.h_bJet1_pt->Fill(b_jet1->Pt(), EventWeight);
+  if(N_bJets >0){
+     h.h_bJet1_pt->Fill(b_jet1->Pt(), EventWeight);
+     h.h_bJet1_Eta->Fill(b_jet1->Eta(), EventWeight);
+     h.h_bJet1_Phi->Fill(b_jet1->Phi(), EventWeight);
   }
-  if(N_bJets >1){  h.h_bJet2_pt->Fill(b_jet2->Pt(), EventWeight);
+  if(N_bJets >1){
+     h.h_bJet2_pt->Fill(b_jet2->Pt(), EventWeight);
+     h.h_bJet2_Eta->Fill(b_jet2->Eta(), EventWeight);
+     h.h_bJet2_Phi->Fill(b_jet2->Phi(), EventWeight);
   }				      
 }
+
+
+void MyAnalysis::PrintModule(Long64_t entry) {
+
+//   ++++++++++++++++++++++++++++++++++++++++
+//   Print Module
+//   ++++++++++++++++++++++++++++++++++++++++
+     cout<< "New Event: "<<endl;
+     cout << "Jets: " << endl;
+     for (vector<MyJet>::iterator it = Jets.begin(); it != Jets.end(); ++it) {
+     cout << "pt, eta, phi, btag, id: " << it->Pt() << ", " << it->Eta() << ", " << it->Phi() << ", " << it->IsBTagged() << ", " << it->GetJetID()
+     << endl;
+     }
+     cout << "Muons: " << endl;
+     for (vector<MyMuon>::iterator it = Muons.begin(); it != Muons.end(); ++it) {
+     cout << "pt, eta, phi, iso, charge: " << it->Pt() << ", " << it->Eta() << ", " << it->Phi() << ", "
+     << it->GetIsolation() << ", " << it->GetCharge() << endl;
+     }
+     cout<<""<<endl;
+}
+
+
 
 Bool_t MyAnalysis::Process(Long64_t entry) {
    // The Process() function is called for each entry in the tree (or possibly
@@ -164,28 +179,7 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
      cout << "Next event -----> " << TotalEvents << endl;
    
    BuildEvent();
-   
- 
 
-   //   ++++++++++++++++++++++++++++++++++++++++
-   //   some examples of how to get pt, eta, ...
-   //   ++++++++++++++++++++++++++++++++++++++++
-   //   cout << "Jets: " << endl;
-   //   for (vector<MyJet>::iterator it = Jets.begin(); it != Jets.end(); ++it) {
-   //      cout << "pt, eta, phi, btag, id: " << it->Pt() << ", " << it->Eta() << ", " << it->Phi() << ", " << it->IsBTagged() << ", " << it->GetJetID()
-   //      << endl;
-   //   }
-   //   cout << "Muons: " << endl;
-   //   for (vector<MyMuon>::iterator it = Muons.begin(); it != Muons.end(); ++it) {
-   //      cout << "pt, eta, phi, iso, charge: " << it->Pt() << ", " << it->Eta() << ", " << it->Phi() << ", "
-   //      << it->GetIsolation() << ", " << it->GetCharge() << endl;
-   //   }
-
-   
-   
-   // +++++++++++++++++++++++++++++++++++++++++++
-   // Fill Histogramms 
-   // +++++++++++++++++++++++++++++++++++++++++++
    double MuonRelIsoCut = 0.10;
    N_IsoMuon = 0;
    N_Jets = 0;
@@ -229,12 +223,12 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    //Define Cut values
    double MuonPtCut = 25.;
 
-   // require at least one isolated muon
+   //Do not Change!! Require at least one isolated muon
    if (N_IsoMuon > 0 && triggerIsoMu24) {
      
      // Have a look at your histograms and compare the different background samples.
-     // Add additional cuts to enrich the fraction of ttbar by cutting on
-     // any of the distributions? 
+     // Try to enrich the fraction of ttbar by cutting on
+     // any of the distributions 
 
      //Plot all variables after every cut; define new Set of Hists in MyAnalysis.h 
      if (muon1->Pt()>MuonPtCut) {
