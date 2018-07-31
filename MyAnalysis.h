@@ -56,6 +56,9 @@ public:
    MyJet *jet1, *jet2;
    MyJet *b_jet1, *b_jet2;
 
+   Float_t met_Pt;
+   Float_t met_E;
+
    Int_t N_IsoMuon;
    Int_t N_Jets;
    Int_t N_bJets;

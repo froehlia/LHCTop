@@ -103,9 +103,10 @@ void MyAnalysis::FillHistos(MyHists & h){
     h.h_MuonEta->Fill(muon1->Eta(), EventWeight);
     h.h_MuonPhi->Fill(muon1->Phi(), EventWeight);
   }
+
+  h.h_MET->Fill(met_E, EventWeight);
  
   h.h_NJets->Fill(NJet, EventWeight);
-  
   if(N_Jets >0){  
     h.h_Jet1_pt->Fill(jet1->Pt(), EventWeight);
     h.h_Jet1_Eta->Fill(jet1->Eta(), EventWeight);
@@ -210,6 +211,9 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
 	if (N_bJets == 2) b_jet2 = &(*it);
       }
    }
+
+   met_Pt = met.Pt();
+   met_E  = met.E();
    
    //cout << "Going to fill hists" << endl;
    FillHistos(hists_nocuts);

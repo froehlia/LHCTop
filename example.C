@@ -11,17 +11,18 @@ int main() {
    // Integrated luminosity (this value is needed for the calculation of the cross section)
    float lumi = 50.;
 
-   // This map stores all samples to run over
-   std::map<TString, TString> processes;
-   processes["Data"] = "data";
-   processes["Wjets"] = "wjets";
-   processes["DY"] = "dy";
-   processes["TTbar"] = "ttbar";
-   processes["WW"] = "ww";
-   processes["WZ"] = "wz";
-   processes["ZZ"] = "zz";
-   processes["QCD"] = "qcd";
-    processes["single Top"] = "single_top";
+   vector<pair<TString, TString>> processes (9);
+   
+   processes[0] = make_pair("Data", "data");
+   processes[1] = make_pair("TTbar", "ttbar");
+   processes[2] = make_pair("Wjets", "wjets");
+   processes[3] = make_pair("DY", "dy");
+   processes[4] = make_pair("WW", "ww");
+   processes[5] = make_pair("WZ", "wz");
+   processes[6] = make_pair("ZZ", "zz");
+   processes[7] = make_pair("QCD", "qcd");
+   processes[8] = make_pair("single Top", "single_top");
+
 
    // Set up plotters
    std::vector<Plotter> Plotters, Plotters_MC;  
@@ -40,29 +41,33 @@ int main() {
 
    
    // Iterate over elements of map to chain all processes
-   for(std::map<TString,TString>::iterator it=processes.begin(); it!=processes.end(); ++it){
+   for(int i = 0; i < processes.size(); i++){
    
      MyAnalysis* A = new MyAnalysis();
      std::unique_ptr<TChain> ch;
      ch.reset(new TChain("events"));
-     TString filename = "files/" + it->second + ".root";
+     TString filename = "files/" + processes[i].second + ".root";
      ch->Add(filename);
-     cout << endl << "Now starting to process the sample '" << it->first << "'" << endl; 
+     cout << endl << "Now starting to process the sample '" << processes[i].first << "'" << endl; 
      ch->Process(A);
 
+     //Here you can access variables, defined in MyAnalysis.C 
+     // float 'new var' = A -> 'variable';
+
+
      // Add this process to the plotter
-     if(it->first == "Data"){
+     if(processes[i].first == "Data"){
        int idx = 0;
        for(std::map<TString,MyHists*>::iterator it2=A->GetHistmap()->begin(); it2!=A->GetHistmap()->end(); ++it2){
-	 Plotters[idx].SetData(A->GetHists(it2->first)->get_histvec(), string(it->first));
+	 Plotters[idx].SetData(A->GetHists(it2->first)->get_histvec(), string(processes[i].first));
 	 idx++;
        }
      }
      else{
        int idx = 0;
        for(std::map<TString,MyHists*>::iterator it2=A->GetHistmap()->begin(); it2!=A->GetHistmap()->end(); ++it2){
-	 Plotters[idx].AddBg(A->GetHists(it2->first)->get_histvec(), std::string(it->first));
-	 Plotters_MC[idx].AddBg(A->GetHists(it2->first)->get_histvec(), std::string(it->first));
+	 Plotters[idx].AddBg(A->GetHists(it2->first)->get_histvec(), std::string(processes[i].first));
+	 Plotters_MC[idx].AddBg(A->GetHists(it2->first)->get_histvec(), std::string(processes[i].first));
 	 idx++;
        }
      }
@@ -78,26 +83,11 @@ int main() {
 
 
 
-
-
    ///////////////////////////////////////
    //                                   //
    //      Add your new code below      // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
    //                                   //
    ///////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
