@@ -27,6 +27,10 @@ MyHists::MyHists(){
   h_MuonPhi -> SetXTitle("Muon #phi");
   h_MuonPhi -> Sumw2(); 
 
+  h_MET = new TH1F("MET", "MET", 20, 0, 200);
+  h_MET -> SetXTitle("MET");
+  h_MET -> Sumw2();
+
   h_NJets = new TH1F("NJets", "Number of jets", 9, 0, 9);
   h_NJets -> SetXTitle("No. Jets");
   h_NJets -> Sumw2(); 
@@ -104,6 +108,9 @@ std::vector<TH1F*> MyHists::get_histvec(){
 
   TH1F* MuonPhi = (TH1F*)h_MuonPhi->Clone();
   vec.emplace_back(MuonPhi);
+
+  TH1F* MET = (TH1F*)h_MET->Clone();
+  vec.emplace_back(MET);
 
   TH1F* NJets = (TH1F*)h_NJets->Clone();
   vec.emplace_back(NJets);

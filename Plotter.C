@@ -123,6 +123,7 @@ void Plotter::Plot() {
 	++j;
       }
     }
+
     TCanvas *c = new TCanvas("c", "c", 800, 600);
     c->SetLogy(DrawLog);
     std::string plotname;
@@ -158,19 +159,18 @@ void Plotter::Plot() {
     TString myoutname = "plots/" + outname + "_" + plotname + ".pdf";
     c->Print(myoutname);
     if (i == 0 && N_histos > 1) {
-      TString s = outname + "(";
+      TString s = outname+".pdf(";
       //c->Print((filename+std::string("(")).c_str());
       c->Print(s);
     }
     else if (i > 0 && i == N_histos - 1){
-      TString s = outname + ")";
+      TString s = outname +".pdf)";
       //c->Print((filename+std::string(")")).c_str());
       c->Print(s);
     }
     else{
       c->Print(outname+".pdf");
     }
-    
   }
   
 }
