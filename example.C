@@ -14,14 +14,14 @@ int main() {
    // This map stores all samples to run over
    std::map<TString, TString> processes;
    processes["Data"] = "data";
-   processes["TTbar"] = "ttbar";
    processes["Wjets"] = "wjets";
    processes["DY"] = "dy";
+   processes["TTbar"] = "ttbar";
    processes["WW"] = "ww";
    processes["WZ"] = "wz";
    processes["ZZ"] = "zz";
    processes["QCD"] = "qcd";
-   processes["single Top"] = "single_top";
+    processes["single Top"] = "single_top";
 
    // Set up plotters
    std::vector<Plotter> Plotters, Plotters_MC;  
@@ -41,6 +41,7 @@ int main() {
    
    // Iterate over elements of map to chain all processes
    for(std::map<TString,TString>::iterator it=processes.begin(); it!=processes.end(); ++it){
+   
      MyAnalysis* A = new MyAnalysis();
      std::unique_ptr<TChain> ch;
      ch.reset(new TChain("events"));

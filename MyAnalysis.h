@@ -39,24 +39,26 @@ public:
    // ++++++++ ONLY TOUCH THIS SMALL PART ++++++++
    // ++++++++++++++++++++++++++++++++++++++++++++
 
-   MyHists hists_nocuts;
+  MyHists hists_nocuts;
+  MyHists hists_firstcuts;   //after first cuts
 
    std::map<TString, MyHists*> histmap;
    bool histmap_init = false;
    void BuildHistmap(){
      histmap["nocuts"] = &hists_nocuts;
-
+     histmap["firstcuts"] = &hists_firstcuts;  //after first cuts
 
      histmap_init = true;
    }
 
    // ++++++++++++++++++++++++++++++++++++++++++++
+   MyMuon *muon1, *muon2;
+   MyJet *jet1, *jet2;
+   MyJet *b_jet1, *b_jet2;
 
-
-
-
-
-
+   Int_t N_IsoMuon;
+   Int_t N_Jets;
+   Int_t N_bJets;
 
    TTree *fChain; //!pointer to the analyzed TTree or TChain
    
@@ -212,6 +214,7 @@ public:
    virtual void Terminate();
    
    void BuildEvent();
+   void PrintModule(Long64_t entry);
    
    int TotalEvents;
    vector<MyJet> Jets;
