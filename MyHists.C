@@ -10,6 +10,7 @@ using namespace std;
 
 MyHists::MyHists(){
 
+  gErrorIgnoreLevel = 2002;
   // Set up all the histograms
   h_NMuon = new TH1F("NMuon", "Number of muons", 5, 0, 5);
   h_NMuon->SetXTitle("No. Muons");
