@@ -11,11 +11,11 @@ using namespace std;
 MyHists::MyHists(){
 
   // Set up all the histograms
-  h_NMuon = new TH1F("NMuon", "Number of muons", 7, 0, 7);
+  h_NMuon = new TH1F("NMuon", "Number of muons", 5, 0, 5);
   h_NMuon->SetXTitle("No. Muons");
   h_NMuon->Sumw2();
 
-  h_MuonPt = new TH1F("MuonPt", "Muon p_{T}", 20, 0, 200);
+  h_MuonPt = new TH1F("MuonPt", "Muon p_{T}", 40, 0, 400);
   h_MuonPt -> SetXTitle("Muon p_{T}");
   h_MuonPt -> Sumw2();  
 
@@ -27,15 +27,15 @@ MyHists::MyHists(){
   h_MuonPhi -> SetXTitle("Muon #phi");
   h_MuonPhi -> Sumw2(); 
 
-  h_MET = new TH1F("MET", "MET", 20, 0, 200);
+  h_MET = new TH1F("MET", "MET", 40, 0, 400);
   h_MET -> SetXTitle("MET");
   h_MET -> Sumw2();
 
-  h_NJets = new TH1F("NJets", "Number of jets", 9, 0, 9);
+  h_NJets = new TH1F("NJets", "Number of jets", 12, 0, 12);
   h_NJets -> SetXTitle("No. Jets");
   h_NJets -> Sumw2(); 
 
-  h_Jet1_pt = new TH1F("Jet1_Pt", "leading jet pT", 20, 0, 200);
+  h_Jet1_pt = new TH1F("Jet1_Pt", "leading jet pT", 60, 0, 600);
   h_Jet1_pt -> SetXTitle("leading jet p_{T}");
   h_Jet1_pt -> Sumw2();
 
@@ -47,7 +47,7 @@ MyHists::MyHists(){
   h_Jet1_Phi -> SetXTitle("leading jet #phi");
   h_Jet1_Phi -> Sumw2();
 
-  h_Jet2_pt = new TH1F("Jet2_Pt", "second jet pT", 20, 0, 200);
+  h_Jet2_pt = new TH1F("Jet2_Pt", "second jet pT", 45, 0, 450);
   h_Jet2_pt -> SetXTitle("second jet p_{T}");
   h_Jet2_pt -> Sumw2();
 
@@ -59,11 +59,11 @@ MyHists::MyHists(){
   h_Jet2_Phi -> SetXTitle("second jet #phi");
   h_Jet2_Phi -> Sumw2();
 
-  h_NbJets = new TH1F("NbJets", "Number of b-tagged jets", 9, 0, 9);
+  h_NbJets = new TH1F("NbJets", "Number of b-tagged jets", 5, 0,5);
   h_NbJets -> SetXTitle("No. b-tagged Jets");
   h_NbJets -> Sumw2(); 
 
-  h_bJet1_pt = new TH1F("bJet1_Pt", "leading b-tagged jet pT", 20, 0, 200);
+  h_bJet1_pt = new TH1F("bJet1_Pt", "leading b-tagged jet pT", 40, 0, 400);
   h_bJet1_pt -> SetXTitle("leading b-tagged jet p_{T}");
   h_bJet1_pt -> Sumw2();
 
@@ -75,7 +75,7 @@ MyHists::MyHists(){
   h_bJet1_Phi -> SetXTitle("leading b-tagged jet #phi");
   h_bJet1_Phi -> Sumw2();
 
-  h_bJet2_pt = new TH1F("bJet2_Pt", "second b-tagged jet pT", 20, 0, 200);
+  h_bJet2_pt = new TH1F("bJet2_Pt", "second b-tagged jet pT", 25, 0, 250);
   h_bJet2_pt -> SetXTitle("second b-tagged jet p_{T}");
   h_bJet2_pt -> Sumw2();
 

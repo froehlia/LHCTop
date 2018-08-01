@@ -23,8 +23,12 @@ int main() {
    processes[7] = make_pair("QCD", "qcd");
    processes[8] = make_pair("single Top", "single_top");
 
-
+   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   //
    // Set up plotters
+   //
+   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
    std::vector<Plotter> Plotters, Plotters_MC;  
    MyAnalysis* dummy = new MyAnalysis();
    dummy->BuildHistmap();
@@ -38,9 +42,22 @@ int main() {
      Plotters_MC.emplace_back(p_mc);
    }
    delete dummy;
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   //
    // Iterate over elements of map to chain all processes
+   //
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   //Here you can access variables, defined in MyAnalysis 
+   // Tip: use a vector to save your defined variables for all processes
+
+   // Example: 
+   // vector<float> 'vec_var' ;
+   // ...
+
+
    for(int i = 0; i < processes.size(); i++){
    
      MyAnalysis* A = new MyAnalysis();
@@ -51,9 +68,9 @@ int main() {
      cout << endl << "Now starting to process the sample '" << processes[i].first << "'" << endl; 
      ch->Process(A);
 
-     //Here you can access variables, defined in MyAnalysis.C 
-     // float 'new var' = A -> 'variable';
-
+     // Example: 
+     // 'vec_var' = A -> 'var';
+     // ...
 
      // Add this process to the plotter
      if(processes[i].first == "Data"){
@@ -73,6 +90,7 @@ int main() {
      }
      delete A;
    }
+   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
    // Plot everything
    for(unsigned int i=0; i<Plotters.size(); i++){
@@ -82,22 +100,11 @@ int main() {
    cout << endl << endl << "Done processing and plotting!" << endl;
 
 
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++
+   // Exercise 2: Measurement of the cross section
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   ///////////////////////////////////////
-   //                                   //
-   //      Add your new code below      // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-   //                                   //
-   ///////////////////////////////////////
-
-
-
-
-
-
-
-
-   //////////////////////////////
-   // Exercise 3: Measurement of the cross section
+   // Save number of events for every process in a new vector<float> before and after your cuts. 
    // Get the efficiency of your event selection on ttbar. Calculate the number of (weighted) selected events divided
    // by the number of (weighted) generated events.
    // double eff = ...;
@@ -108,8 +115,20 @@ int main() {
    // Calculate the cross section
    // ...
 
-   // Propagate an uncertainty on the cross section
+   // Propagate a statistic uncertainty on the cross section
+   // ...
+
+   //investigate a systematic uncertanty introduced by JEC on the cross section
+   // ...
+   
+   //Print/Save your results
    // ...
 
 
+   
 }
+
+
+
+
+
