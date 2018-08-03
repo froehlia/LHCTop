@@ -62,6 +62,7 @@ void Plotter::Plot() {
   MyStyle->SetTitleSize(0.05, "x");
   MyStyle->SetTitleSize(0.05, "y");
   MyStyle->SetTitleSize(0.05, "z");
+  MyStyle->SetTickLength(0.02,"x");
   gROOT->SetStyle("MyStyle");
    
   //gROOT->ForceStyle();
@@ -142,6 +143,7 @@ void Plotter::Plot() {
       data.at(0).at(i)->SetMarkerStyle(20);
       data.at(0).at(i)->Draw("psame");
       l->Draw("same");
+      gPad->RedrawAxis();
     }
     if (data.size() == 0 && bg.size() > 0) {
       plotname = std::string(bg.at(0).at(i)->GetName());
@@ -154,7 +156,9 @@ void Plotter::Plot() {
       hs->GetYaxis()->SetTitle("Events");
          
       l->Draw("same");
+       gPad->RedrawAxis();
     }
+    
     //c->Print((std::string("plots/")+filename+std::string("_")+plotname+std::string(".pdf")).c_str());
     TString myoutname = "plots/" + outname + "_" + plotname + ".pdf";
     c->Print(myoutname);
