@@ -1,6 +1,6 @@
-\section{Durchf\"uhrung}
+\section{Vorbereitung (vor Praktikumsbeginn)}
+%\section{Durchf\"uhrung}
 \label{tasks}
-\subsection{Vorbereitung (vor Praktikumsbeginn)}
 Wie \"ublich beginnt auch dieser Praktikumsversuch mit einer Vorbesprechung, in der zun\"achst der theoretische Hintergrund der Analyse diskutiert wird. Im Folgenden finden Sie einen Fragenkatalog, der Ihnen einen Eindruck des Erwartungshorizonts vermittelt.\\
 \underline{Physik des Top-Quarks}
 \begin{itemize}
@@ -29,7 +29,7 @@ Wie \"ublich beginnt auch dieser Praktikumsversuch mit einer Vorbesprechung, in 
 \end{itemize}
 
 
-\subsection{Aufgaben}
+\section{Aufgaben}
 F\"ur die Durchf\"uhrung des Versuchs wird Ihnen ein Unix-Rechner zur Verf\"ugung gestellt. Sie loggen sich auf einem Gast-Konto ein. Die ben\"otigte Software befindet sich bereits auf dem Rechner. \"Offnen Sie eine Konsole und erstellen Sie sich einen Ordner, z.B.:
 \begin{lstlisting}
 mkdir mydir
@@ -37,7 +37,7 @@ cd mydir
 \end{lstlisting}
 In diesem Ordner f\"uhren Sie den Versuch durch und speichern alle Ergebnisse.
 %Hinweis: Sie loggen sich mit einem Gast-Konto ein. Bringen Sie bitte au\ss{}erdem f\"ur Ihre Auswertung einen USB-Stick mit, um Ihre Ergebnisse zu sichern. Die zur Verf\"ugung gestellten Rechner arbeiten im Offline-Betrieb.
-\subsubsection{Event Displays mit der Fireworks-Software}
+\subsection{Event Displays mit der Fireworks-Software}
 Die Fireworks-Software wird zur graphischen Darstellung von Ereignissen im Detektor verwendet. Kopieren Sie sich die Software wie folgt in Ihren Ordner:
 \begin{lstlisting}
 cp -r /opt/fp/cmsShow-8.1 .
@@ -62,7 +62,7 @@ Betrachten Sie nun Event-Displays aus einem Single-Top-Sample:
 \end{lstlisting}
 K\"onnen Sie Unterschiede feststellen, die Ihnen bei der Selektion von $t\bar{t}$-Ereignissen helfen? Speichern Sie f\"ur Ihre Auswertung ein Event-Display mit einem Single-Top-Ereignis.
 
-\subsubsection{Einf\"uhrung in das Analyse-Framework}
+\subsection{Einf\"uhrung in das Analyse-Framework}
 Unser Analyse-Framework ist bereits voll funktionsf\"ahig, jedoch macht es bislang nicht viel. Setzen Sie das Analyse-Framework auf und f\"uhren Sie es ein erstes Mal aus:
 \begin{itemize}
 	%\item erstellen Sie zun\"achst im Home-Verzeichnis einen neuen Ordner
@@ -70,31 +70,32 @@ Unser Analyse-Framework ist bereits voll funktionsf\"ahig, jedoch macht es bisla
 	\item kompilieren Sie mit 'make'. Das Kompilieren erstellt Ihnen eine ausf\"uhrbare Datei \textbf{example.x}
 	\item nun kann das Framework ausgef\"uhrt werden mit './example.x'
 \end{itemize}
-Das Programm schreibt bereits Output-Dateien (wie z.B. \textbf{results.pdf}), die zwei Verteilungen der Analyse beinhalten. \"Offnen Sie die Dateien mit einem PDF-Viewer, wie z.B. \textbf{okular}. Im Folgenden arbeiten Sie haupts\"achlich in den Dateien 'MyAnalysis.C', 'MyAnalysis.h' und 'example.C'. \"Offnen Sie diese mit einem Editor, z.B. Emacs, mit 'emacs MyAnalysis.C'.
+Das Programm schreibt bereits Output-Dateien (wie z.B. \textbf{nocuts.pdf}), die zwei Verteilungen der Analyse beinhalten. \"Offnen Sie die Dateien mit einem PDF-Viewer, wie z.B. \textbf{xpdf/okular}. Im Folgenden arbeiten Sie haupts\"achlich in den Dateien 'MyAnalysis.C', 'MyAnalysis.h' und 'example.C'. \"Offnen Sie diese mit einem Editor, z.B. Emacs, mit 'emacs MyAnalysis.C'. Machen Sie sich zu Beginn mit dem Code vertraut.
 
-\subsubsection{Aufgabe 1: Warm-Up}
-In der Datei \textbf{results.pdf} finden Sie die Verteilung der invarianten Masse zweier Myonen (mit beliebiger Ladung) sowie die Anzahl der Myonen in einem Ereignis. 
+\subsection{Aufgabe 1: Eigenschaften von Top-Quark-Ereignissen}
+In der Datei \textbf{nocuts.pdf} finden Sie verschiedene Verteilungen, wie z.B. die Anzahl der Myonen, Muon $p_{T}$, Anzahl der Jets, etc. in einem Ereignis. \\
+\subsubsection{Aufgabe 1.1:}
 \begin{itemize}
-	\item Finden Sie heraus, wie viele Ereignisse in den Daten mehr als ein isoliertes und rekonstruiertes Myon haben. Aus welchen Prozessen stammen diese zus\"atzlichen Myonen? Betrachten Sie dazu die jeweiligen Monte-Carlo-Samples.
-	\item Bestimmen Sie die invariante Masse zweier Myonen mit unterschiedlicher Ladung. (Hinweis: Suchen Sie in der \texttt{MyMuon} Klasse nach dem Befehl, welche die Ladung des Myons ausgibt. Fordern Sie anschlie\ss{}end in einer If-Bedingung mindestens zwei isolierte Myonen mit unterschiedlicher Ladung)
-	\item Stellen Sie die Verteilung der invarianten Masse von zwei Myonen unterschiedlicher Ladung in einem Histogramm graphisch dar. Nutzen Sie dazu das bereits vorhandene Histogramm der invarianten Masse zweier Myonen. Probieren sie verschiedene Bin-Gr\"o\ss{}en sowie unterschiedliche Achsen-Reichweiten aus. (Hinweis: in der Definition eines Histogramms, wie z.B. 'h\_Mmumu = new TH1F("Mmumu", "\,Invariant di-muon mass", n, x$_1$, x$_2$);' steht n f\"ur die Anzahl der Bins, x$_1$ f\"ur die erste und x$_2$ f\"ur die letzte Bin-Grenze.) \\ Was f\"allt Ihnen an der Verteilung auf? Vergleichen Sie sowohl Daten als auch die jeweiligen Monte-Carlo-Prozesse.
+  \item Betrachten Sie die bereitgestellten Histogramme und machen Sie sich mit ihnen vertraut.
+  \item Finden Sie heraus, wie viele Ereignisse in den Daten mehr als ein isoliertes und rekonstruiertes Myon haben. Aus welchen Prozessen stammen diese zus\"atzlichen Myonen? Betrachten Sie dazu die jeweiligen Monte-Carlo-Samples.
 \end{itemize}
-\subsubsection{Aufgabe 2: Eigenschaften von Top-Quarks-Ereignissen}
+\subsubsection{Aufgabe 1.2}
 In diesem Aufgabenteil beginnen wir mit den ersten Schritten hinsichtlich einer realen Messung mit Top-Quark-Ereignissen. Dazu m\"ussen wir verstehen, wie man Top-Quark-Ereignisse effizient selektiert und gleichzeitig den Anteil von Ereignissen ohne Top-Quarks (sogenannte Untergrund-Ereignisse) reduziert.
 \begin{itemize}
-	\item Fordern Sie von nun an f\"ur alle Verteilungen mindestens ein isoliertes Myon.
-	\item Versuchen Sie Variablen zu finden, die besonders sensitiv sind um zwischen Signal und Untergrund zu unterscheiden. Geeignete Variablen k\"onnten z.B. die Anzahl von Jets, der Transversalimpuls des 1., 2., 3. Jets, der Transversalimpuls von Myonen, fehlende transversale Energie, die Anzahl von b-Jets (b-tagging), der Transversalimpuls des 1., 2. b-Jets sowie Winkelverteilungen ($\eta$) von (b-)Jets und Myonen sein. F\"ullen Sie diese Verteilungen dazu jeweils in ein eigenes Histogramm. Orientieren Sie sich dazu an den bereits vorhandenen Histogrammen. Vergessen Sie nicht Ihre Histogramme in \texttt{MyAnalysis.h} zu definieren. \\
-	 Vergleichen Sie in Ihren erstellten Histogrammen Signal mit Untergrund!
-	\item Wenden Sie Schnitte auf verschiedene Variablen an um das Verh\"altnis aus Signal zu Untergrund zu verbessern. Es empfiehlt sich dabei iterativ vorzugehen, d.h. Sie wenden z.B. einen Schnitt auf mindestens 2 Jets an und \"uberpr\"ufen, was dieser Schnitt f\"ur Folgen hat, indem Sie sich wieder alle Verteilungen ansehen. Dann wenden Sie sich der n\"achsten Variable (bzw. dem n\"achsten Schnitt) zu und verfahren genauso. Speichern Sie die Histogramme vor und nach den Schnitten. \\
-	\item Wie viele Ereignisse verlieren Sie durch die Anwendung ihrer Selektion (Effizienz) und wie viele Ereignisse aus Untergrund-Prozessen? Welcher Untergrund ist besonders unangenehm? Lassen Sie sich sowohl die Effizienz als auch die Reinheit nach jedem Schnitt anzeigen. (Hinweis: f\"ugen Sie eine Variable, z.B. einen \textbf{float}, ein, die der Anzahl ihrer selektierten Ereignisse entspricht. Addieren Sie dazu das \textbf{Event\-Weight} auf Ihre eingef\"uhrte Variable nach der vollen Selektion f\"ur jedes Ereignis mit dem \grqq{}+=\grqq{} Operator.)
+        \item Fordern Sie von nun an f\"ur alle Verteilungen mindestens ein isoliertes Myon.
+	\item Versuchen Sie Variablen zu finden, die besonders sensitiv sind um zwischen Signal und Untergrund zu unterscheiden. Geeignete Variablen k\"onnten z.B. die Anzahl von Jets, der Transversalimpuls des 1., 2., 3. Jets, der Transversalimpuls von Myonen, fehlende transversale Energie, die Anzahl von b-Jets (b-tagging), der Transversalimpuls des 1., 2. b-Jets sowie Winkelverteilungen ($\eta$) von (b-)Jets und Myonen sein. \\
+	 Vergleichen Sie daf\"ur in den Histogrammen Signal mit Untergrund!
+	\item Wenden Sie Schnitte auf verschiedene Variablen an um das Verh\"altnis aus Signal zu Untergrund zu verbessern. Wie viele Signal-Ereignisse verlieren Sie durch die Anwendung ihrer Selektion (Signal-Effizienz) und wie viele Ereignisse aus Untergrund-Prozessen? Welcher Untergrund ist besonders unangenehm? Lassen Sie sich sowohl die Effizienzen, als auch die Reinheit nach jedem Schnitt anzeigen. (Hinweis: f\"ugen Sie eine Variable, z.B. einen \textbf{float}, ein, die der Anzahl ihrer selektierten Ereignisse entspricht. Addieren Sie dazu das \textbf{Event\-Weight} auf Ihre eingef\"uhrte Variable nach der vollen Selektion f\"ur jedes Ereignis mit dem \grqq{}+=\grqq{} Operator.)
+        \item Es empfiehlt sich iterativ vorzugehen, d.h. Sie wenden z.B. einen Schnitt auf mindestens 2 Jets an und \"uberpr\"ufen, was dieser Schnitt f\"ur Folgen hat, indem Sie sich wieder alle Verteilungen, sowie Reinheit und Effizienz ansehen. Dann wenden Sie sich der n\"achsten Variable (bzw. dem n\"achsten Schnitt) zu und verfahren genauso. Speichern Sie die Histogramme vor und nach den Schnitten. \\
 \end{itemize}
 
-\subsubsection{Aufgabe 3: Messung des Wirkungsquerschnitts}
+\subsubsection{Aufgabe 2: Messung des Wirkungsquerschnitts}
 Ziel dieser Aufgabe ist die Berechnung des Wirkungsquerschnitts der Top-Antitop-Quark-Produktion am LHC. Die ben\"otigten Gr\"o\ss{}en bestimmen Sie dazu Schritt f\"ur Schritt:
 \begin{itemize}
-	\item F\"ur die Berechung des Wirkungsquerschnitts ben\"otigen Sie die Akzeptanz $\epsilon$. Die Akzeptanz beinhaltet die Tatsache, dass wir uns auf den semileptonischen Zerfalls\-kanal mit einem Myon im Endzustand beschr\"anken. Dieses Verzweigungsverh"altnis ist bekannt und kann aus der Simulation genommen werden. Dar\"uber hinaus beinhaltet die Akzeptanz alle Selektions-Schnitte, die Sie in Aufgabe 2 eingef\"uhrt haben. \\Sie berechnen die Akzeptanz aus dem Verh\"altnis der Anzahl selektierter Top-Quark-Ereignisse (nach allen Schnitten) und der Anzahl aller generierten Top-Quark-Er\-eig\-nissen.
+	\item F\"ur die Berechung des Wirkungsquerschnitts ben\"otigen Sie die Akzeptanz(Signaleffizienz) $\epsilon$. Die Akzeptanz beinhaltet die Tatsache, dass wir uns auf den semileptonischen Zerfalls\-kanal mit einem Myon im Endzustand beschr\"anken. Dieses Verzweigungsverh"altnis ist bekannt und kann aus der Simulation genommen werden. Dar\"uber hinaus beinhaltet die Akzeptanz alle Selektions-Schnitte, die Sie in Aufgabe 2 eingef\"uhrt haben. \\Sie berechnen die Akzeptanz aus dem Verh\"altnis der Anzahl selektierter Top-Quark-Ereignisse (nach allen Schnitten) und der Anzahl aller generierten Top-Quark-Er\-eig\-nisse.
 	\item Der Wirkungsquerschnitt wird mit Hilfe echter Daten berechnet. Allerdings beinhalten die Daten, auch nach Anwendung Ihrer Selektion, noch Untergrund-Ereignisse, die zur Berechnung des Wirkungsquerschnitts nicht mitgez\"ahlt werden d\"urfen. Wir vertrauen der Simulation insofern, dass sie die korrekte Anzahl von Untergrund-Ereignissen nach der Selektion vorhersagt. Bestimmen Sie die Anzahl an Top-Antitop-Quark-Ereignissen in den Daten, indem Sie die erwartete Anzahl von Untergrund-Ereignissen von den Daten-Ereignissen subtrahieren.
 	\item Nun k\"onnen Sie den Wirkungsquerschnitt mit folgender Formel bestimmen: $\sigma_{t\bar{t}} = \frac{N^{data} - N^{bg}}{\epsilon \cdot L}$. Geben Sie einen Fehler auf Ihre Messung an! (Hinweis: Nehmen Sie f\"ur die Luminosit\"at einen Fehler von 5\% an)
+        \item Durch die Anwendung von Jet Energie Korrekturen (JEC) ist es zudem notwendig, einen systematischen Fehler zu bestimmen. Wiederholen Sie dazu die Berechnung des Wirkungsquerschnitts und variieren Sie dabei die Jet Energie Korrekturen (up/down). 
 	\item Vergleichen Sie ihr Resultat mit einem offiziellen Ergebnis von ATLAS oder CMS (z.B. http://arxiv.org/pdf/1108.3773.pdf)
 \end{itemize}
 
