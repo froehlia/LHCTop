@@ -7,15 +7,14 @@
 \BOOKMARK [1][-]{section.3}{Der LHC und das CMS-Experiment}{}% 7
 \BOOKMARK [2][-]{subsection.3.1}{Der Large Hadron Collider}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.2}{Teilchen-Identifizierung im Detektor}{section.3}% 9
-\BOOKMARK [1][-]{section.4}{Datensatz und Monte-Carlo-Simulation}{}% 10
-\BOOKMARK [1][-]{section.5}{Datenformat und Struktur des ROOT tree}{}% 11
-\BOOKMARK [1][-]{section.6}{Analyse-Framework}{}% 12
-\BOOKMARK [1][-]{section.7}{Durchf\374hrung}{}% 13
-\BOOKMARK [2][-]{subsection.7.1}{Vorbereitung \(vor Praktikumsbeginn\)}{section.7}% 14
-\BOOKMARK [2][-]{subsection.7.2}{Aufgaben}{section.7}% 15
-\BOOKMARK [3][-]{subsubsection.7.2.1}{Event Displays mit der Fireworks-Software}{subsection.7.2}% 16
-\BOOKMARK [3][-]{subsubsection.7.2.2}{Einf\374hrung in das Analyse-Framework}{subsection.7.2}% 17
-\BOOKMARK [3][-]{subsubsection.7.2.3}{Aufgabe 1: Warm-Up}{subsection.7.2}% 18
-\BOOKMARK [3][-]{subsubsection.7.2.4}{Aufgabe 2: Eigenschaften von Top-Quarks-Ereignissen}{subsection.7.2}% 19
-\BOOKMARK [3][-]{subsubsection.7.2.5}{Aufgabe 3: Messung des Wirkungsquerschnitts}{subsection.7.2}% 20
-\BOOKMARK [1][-]{section.8}{Auswertung}{}% 21
+\BOOKMARK [2][-]{subsection.3.3}{Jets und Jet Energie Korrekturen}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Datensatz und Monte-Carlo-Simulation}{}% 11
+\BOOKMARK [1][-]{section.5}{Vorbereitung \(vor Praktikumsbeginn\)}{}% 12
+\BOOKMARK [1][-]{section.6}{Aufgaben}{}% 13
+\BOOKMARK [2][-]{subsection.6.1}{Event Displays mit der Fireworks-Software}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.2}{Einf\374hrung in das Analyse-Framework}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.3}{Aufgabe 1: Eigenschaften von Top-Quark-Ereignissen}{section.6}% 16
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Aufgabe 1.1:}{subsection.6.3}% 17
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Aufgabe 1.2}{subsection.6.3}% 18
+\BOOKMARK [3][-]{subsubsection.6.3.3}{Aufgabe 2: Messung des Wirkungsquerschnitts}{subsection.6.3}% 19
+\BOOKMARK [1][-]{section.7}{Auswertung}{}% 20
