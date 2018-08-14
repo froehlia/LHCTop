@@ -68,7 +68,7 @@ void Plotter::Plot() {
   //gROOT->ForceStyle();
    
   //Draw Histogramms with log y-axis
-  bool DrawLog = true;
+  bool DrawLog = false;
 
  
   for (int i = 0; i < N_histos; ++i) {
@@ -130,8 +130,10 @@ void Plotter::Plot() {
     std::string plotname;
     if (data.size() > 0) {
       plotname = std::string(data.at(0).at(i)->GetName());
-      data.at(0).at(i)->SetMinimum(0.15);
-      data.at(0).at(i)->SetMaximum(5 * data.at(0).at(i)->GetMaximum());
+      if(data.at(0).at(i)->GetEntries() > 0){
+	data.at(0).at(i)->SetMinimum(0.15);
+	data.at(0).at(i)->SetMaximum(1.5 * data.at(0).at(i)->GetMaximum());
+      }
       data.at(0).at(i)->GetXaxis()->SetTitleOffset(1.3);
       data.at(0).at(i)->GetYaxis()->SetTitleOffset(1.3);
       data.at(0).at(i)->GetYaxis()->SetTitle("Events");

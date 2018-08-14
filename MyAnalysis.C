@@ -149,7 +149,190 @@ void MyAnalysis::FillHistos(MyHists & h){
      h.h_bJet2_pt->Fill(b_jet2->Pt(), EventWeight);
      h.h_bJet2_Eta->Fill(b_jet2->Eta(), EventWeight);
      h.h_bJet2_Phi->Fill(b_jet2->Phi(), EventWeight);
-  }				      
+  }
+  
+  if(m_top_avg >= 10.) h.h_mtop_rec->Fill(m_top_avg, EventWeight);
+}
+
+//This function fills the defined histogramms for you every time its called
+vector<TLorentzVector> MyAnalysis::ReconstructNeutrino(){
+
+  if(N_IsoMuon < 1) throw runtime_error("In MyAnalysis::ReconstructNeutrino(): Please require at least one isolated muon before calling this function. Abort.");
+
+  vector<TLorentzVector> solutions;
+  
+  double mW = 80.;
+  
+  double dPhi = fabs(muon1->Phi() - met.Phi());
+  double mu = pow(mW,2)/2 + muon1->Pt()*met.Pt()*cos(dPhi);
+
+  double A = mu * muon1->Pz() / pow(muon1->Pt(),2);
+  double B = ((pow(muon1->E(),2) * pow(met.Pt(),2)) - pow(mu,2)) / (pow(muon1->Pt(),2));
+
+  //argument of sqrt will be: sqrt(A^2 - B). Therefore now check, if A^2 >= B.
+  bool isreal = pow(A,2) >= B;
+
+  //if the sqrt would be imaginary, instead just take the real part of the solution
+  if(!isreal || pow(A,2) - B == 0){
+    double pz = A;
+    TLorentzVector sol;
+    sol.SetXYZM(met.Px(), met.Py(), pz, 0.);
+    solutions.emplace_back(sol);
+    return solutions;
+  }
+  else{
+    TLorentzVector sol;
+    
+    double pz = A+sqrt(pow(A,2) - B);
+    sol.SetXYZM(met.Px(), met.Py(), pz, 0.);
+    solutions.emplace_back(sol);
+    
+    pz = A-sqrt(pow(A,2) - B);
+    sol.SetXYZM(met.Px(), met.Py(), pz, 0.);
+    solutions.emplace_back(sol);
+    return solutions;
+  }
+  			      
+}
+
+vector<pair<TLorentzVector,TLorentzVector>> MyAnalysis::ReconstructTTbar(int min_njets){
+  if(N_IsoMuon < 1) throw runtime_error("In MyAnalysis::ReconstructTTbar(): Please require at least one isolated muon before calling this function. Abort.");
+  if(N_Jets < 3) throw runtime_error("In MyAnalysis::ReconstructTTbar(): Please require at least three jets before calling this function. Abort.");
+  if(min_njets < 2 || min_njets > 4) throw runtime_error("In MyAnalysis::ReconstructTTbar(): Please choose a minimum number of jets of 2, 3, or 4. Abort.");
+  if(min_njets > N_Jets - 1) throw runtime_error("In MyAnalysis::ReconstructTTbar(): The number of jets in this event is not sufficient to reconstruct the ttbar system with the required number of jets in the hadronic top quark candidate. Please require a higher number of jets before running this function or reduce the minimum number of jets that shall be used for the hadronic top quark hypothesis.");
+  
+  vector<pair<TLorentzVector,TLorentzVector>> ttbarhypos;
+  
+  vector<bool> jetused;
+  for(unsigned int i=0; i<Jets.size(); i++) jetused.emplace_back(false);
+  
+  
+  // 0) Define needed variables
+  TLorentzVector muon;
+  muon.SetXYZM(muon1->Px(), muon1->Py(), muon1->Pz(), muon1->M());
+
+  // 1) Get the reconstructed neutrino (1 or 2 solutions)
+  vector<TLorentzVector> neutrinosols = ReconstructNeutrino();
+
+  // 2) loop over the solutions and repeat the following for each solution.
+  for(unsigned int i=0; i<neutrinosols.size(); i++){
+    TLorentzVector neutrino = neutrinosols[i];
+
+    // 3) Combine (pT-leading muon) and neutrino to W_lep
+    TLorentzVector W_lep = neutrino + muon;
+
+    // 4) assign one jet to the leptonic top quark. Loop over all possible permutations.
+    for(unsigned int i=0; i<Jets.size(); i++){
+      TLorentzVector jet_lep;
+      jet_lep.SetXYZM(Jets[i].Px(), Jets[i].Py(), Jets[i].Pz(), Jets[i].M());
+
+      TLorentzVector t_lep = W_lep + jet_lep;
+      jetused[i] = true;
+
+      // 5) build all possible permutations of at least 2, at most 4 jets to build hadronic top quark candidates
+      
+      // 5.1) first jet loop
+      for(unsigned int j=0; j<Jets.size(); j++){
+	if(jetused[j]) continue;
+
+	TLorentzVector myjet1(Jets[j].Px(), Jets[j].Py(), Jets[j].Pz(), Jets[j].E());
+	//jetused[j] = true;
+
+	//5.2) second jet loop
+	for(unsigned k=0; k<Jets.size(); k++){
+	  if(jetused[k]) continue;
+	  if(k<=j) continue;
+
+	  TLorentzVector myjet2(Jets[k].Px(), Jets[k].Py(), Jets[k].Pz(), Jets[k].E());
+	  //jetused[k] = true;
+
+	  if(N_bJets > 0){
+	    if(!(Jets[i].IsBTagged()) && !(Jets[j].IsBTagged() || Jets[k].IsBTagged())) continue;
+
+	    if(N_bJets > 1){
+	      if(!(Jets[i].IsBTagged()) || !(Jets[j].IsBTagged() || Jets[k].IsBTagged())) continue;
+	    }
+	  }
+	  
+	  // here we can already fill hypotheses with only 2 jets.
+	  pair<TLorentzVector, TLorentzVector> hypo2jets = make_pair(t_lep, myjet1+myjet2);
+	  if(min_njets <= 2) ttbarhypos.emplace_back(hypo2jets);
+	  
+	  // 5.3) third jet loop
+	  if(Jets.size() < 4) continue;
+	  for(unsigned int l=0; l<Jets.size(); l++){
+	    if(jetused[l]) continue;
+	    if(l<=k) continue;
+	    TLorentzVector myjet3(Jets[l].Px(), Jets[l].Py(), Jets[l].Pz(), Jets[l].E());
+	    //jetused[l] = true;
+
+	    if(N_bJets > 0){
+	      if(!(Jets[i].IsBTagged()) && !(Jets[j].IsBTagged() || Jets[k].IsBTagged() || Jets[l].IsBTagged())) continue;
+
+	      if(N_bJets > 1){
+		if(!(Jets[i].IsBTagged()) || !(Jets[j].IsBTagged() || Jets[k].IsBTagged() || Jets[l].IsBTagged())) continue;
+	      }
+	    }
+	    
+	    // here we fill hypotheses with exactly 3 jets now
+	    pair<TLorentzVector, TLorentzVector> hypo3jets = make_pair(t_lep, myjet1+myjet2+myjet3);
+	    if(min_njets <= 3) ttbarhypos.emplace_back(hypo3jets);
+
+
+	    // 5.4) fourth and final jet loop
+	    if(Jets.size() < 5) continue;
+	    for(unsigned int m=0; m<Jets.size(); m++){
+	      if(jetused[m]) continue;
+	      if(m<=l) continue;
+	      TLorentzVector myjet4(Jets[m].Px(), Jets[m].Py(), Jets[m].Pz(), Jets[m].E());
+
+	      if(N_bJets > 0){
+		if(!(Jets[i].IsBTagged()) && !(Jets[j].IsBTagged() || Jets[k].IsBTagged() || Jets[l].IsBTagged() || Jets[m].IsBTagged())) continue;
+
+		if(N_bJets > 1){
+		  if(!(Jets[i].IsBTagged()) || !(Jets[j].IsBTagged() || Jets[k].IsBTagged() || Jets[l].IsBTagged()|| Jets[m].IsBTagged())) continue;
+		}
+	      }
+	      
+	      // fill hypotheses with exactly 4 jets
+	      pair<TLorentzVector, TLorentzVector> hypo4jets = make_pair(t_lep, myjet1+myjet2+myjet3+myjet4);
+	      if(min_njets <= 4) ttbarhypos.emplace_back(hypo4jets);
+	      
+	    } // End of fourth loop over jets for the hadronic top
+	  } // End of third loop over jets for the hadronic top
+	} // End of second loop over jets for the hadronic top
+      } // End of first loop over jets for the hadronic top
+
+      // Reset 'jetused'
+      jetused[i] = false;
+      
+    } // End of loop over jets being assigned to leptonic top
+  } // End of loop over neutrino solutions
+  
+  return ttbarhypos;
+}
+
+pair<TLorentzVector, TLorentzVector> MyAnalysis::SelectBestTTbarHypothesis(vector<pair<TLorentzVector, TLorentzVector>> hypos, double max_dM){
+
+  //Make sure that all entries consist of one leptonic and one hadronic top quark!
+
+  //Loop over all hypotheses and search for the one with the smallest mass difference between the leptonic and the hadronic cadidate
+  double dM_min = 99999;
+ 
+  pair<TLorentzVector, TLorentzVector> besthypo;
+  for(unsigned int i=0; i<hypos.size(); i++){
+    double dM = fabs(hypos[i].first.M() - hypos[i].second.M());
+    if(dM < dM_min){
+      dM_min = dM;
+      besthypo = hypos[i];
+    }   
+  }
+
+  if(dM_min <= max_dM) return besthypo;
+  else{
+    TLorentzVector dummy(0.,0.,0.,0.);
+    return make_pair(dummy,dummy);
+  }
 }
 
 
@@ -216,6 +399,7 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    N_IsoMuon = 0;
    N_Jets = 0;
    N_bJets = 0;
+   m_top_avg = -1.;
 
    // Loop over all muons. The number of isolated muons 'N_IsoMuon' is summed up. 
    // The leading muon and the second leading muon get defined by pointing to the 
@@ -252,10 +436,18 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    
    ///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    ///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+   // +++++++++++++++++++++++++++++++++++++++++++
+   // Start of Exercises: 
+   // Code you have to edit
+   // +++++++++++++++++++++++++++++++++++++++++++
 
-   //Start of Exercises: 
-   //Code you have to edit
 
+
+
+
+
+   
    // +++++++++++++++++++++++++++++++++++++++++++
    // Exercise 1: MC / data comparisons
    // +++++++++++++++++++++++++++++++++++++++++++
@@ -266,17 +458,27 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    //Require at least one isolated muon
    if (N_IsoMuon >= 1 && triggerIsoMu24) {
 
-     //This function fills for you a set of histogramms every time its called. Don't forget to define it in MyAnalysis.h
      FillHistos(hists_nocuts);
+
+     //This function fills for you a set of histogramms every time it is called. Don't forget to define it in MyAnalysis.h
      
      // Have a look at your histograms and compare the different background samples.
      // Try to enrich the fraction of ttbar by cutting on any of the distributions 
-     //Plot all variables after every cut you introduce
+     // Plot all variables after every cut you introduce
      
      /*
      if(muon1->Pt()>MuonPtCut){
      }
      */
+
+
+
+
+
+
+
+
+     
 
      // +++++++++++++++++++++++++++++++++++++++++++
      // Exercise 2: Measurement of the cross section
@@ -286,10 +488,52 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
      // the selection efficiency can be calculated. Afterwards, move to the 'example.C' 
      // file to determine the efficiency and the ttbar cross section.
 
- 
+
+
+
+
+
+
+
+
+
+     
+     // ++++++++++++++++++++++++++++++++++++++++++++
+     // Exercise 3: Reconstruction of the top quark mass
+     // ++++++++++++++++++++++++++++++++++++++++++++
+
+     // Start off with a new event selection here (still inside the loop requiring at least one isolated muon and the trigger, but nothing from exercise 2).
+
+
+     
+     //The 3 lines below are working - un-comment them! Just make sure to apply your event selection before ;)
+     /*
+       vector<pair<TLorentzVector,TLorentzVector>> ttbarreco = ReconstructTTbar(2);
+       pair<TLorentzVector, TLorentzVector> tt_best = SelectBestTTbarHypothesis(ttbarreco);
+       m_top_avg = (tt_best.first.M() + tt_best.second.M())/2;
+     */
+
+     // You should implement a new set of histograms to be filled here, otherwise you can't analyze anything... 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     // +++++++++++++++++++++++++++++++++++++++++
+     // Do not edit the code below
+     // +++++++++++++++++++++++++++++++++++++++++     
    }
-
-
    return kTRUE;
 }
 

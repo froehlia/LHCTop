@@ -39,8 +39,8 @@ public:
   // ++++++++ ONLY TOUCH THIS SMALL PART ++++++++
   // ++++++++++++++++++++++++++++++++++++++++++++
   
-  //Define for every cut  a new set of Histogramms
-  MyHists hists_nocuts;
+  //Define a new set of histograms for each cut
+  MyHists hists_nocuts, hists_topreco;
   
   std::map<TString, MyHists*> histmap;
   bool histmap_init = false;
@@ -59,6 +59,7 @@ public:
   
   Float_t met_Pt;
   Float_t met_E;
+  Float_t m_top_avg;
   
   Int_t N_IsoMuon;
   Int_t N_Jets;
@@ -186,6 +187,9 @@ public:
   virtual void SlaveBegin(TTree *tree);
   virtual void Init(TTree *tree);
   virtual Bool_t Notify();
+  virtual std::vector<TLorentzVector> ReconstructNeutrino();
+  virtual std::vector<std::pair<TLorentzVector,TLorentzVector>> ReconstructTTbar(int min_njets = 2);
+  std::pair<TLorentzVector, TLorentzVector> SelectBestTTbarHypothesis(std::vector<std::pair<TLorentzVector, TLorentzVector>> hypos, double max_dM = 10);
   virtual void FillHistos(MyHists & h);
   
   virtual MyHists *GetHists(TString name){
