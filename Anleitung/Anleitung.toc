@@ -18,7 +18,7 @@
 \contentsline {subsubsection}{\numberline {6.3.1}Aufgabe 1.1:}{26}{subsubsection.6.3.1}
 \contentsline {subsubsection}{\numberline {6.3.2}Aufgabe 1.2}{26}{subsubsection.6.3.2}
 \contentsline {subsection}{\numberline {6.4}Aufgabe 2: Messung des Wirkungsquerschnitts}{27}{subsection.6.4}
-\contentsline {subsection}{\numberline {6.5}Aufgabe 3: Rekonstruktion der Top-Quark-Masse}{29}{subsection.6.5}
-\contentsline {subsubsection}{\numberline {6.5.1}Methode zur Rekonstruktion}{29}{subsubsection.6.5.1}
-\contentsline {subsubsection}{\numberline {6.5.2}Messung der rekonstruierten Top Quark Masse}{31}{subsubsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5}Aufgabe 3: Rekonstruktion der Top-Quark-Masse}{28}{subsection.6.5}
+\contentsline {subsubsection}{\numberline {6.5.1}Methode zur Rekonstruktion}{28}{subsubsection.6.5.1}
+\contentsline {subsubsection}{\numberline {6.5.2}Messung der rekonstruierten Top Quark Masse}{30}{subsubsection.6.5.2}
 \contentsline {section}{\numberline {7}Auswertung}{33}{section.7}
