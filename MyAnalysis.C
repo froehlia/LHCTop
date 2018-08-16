@@ -458,9 +458,10 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
    //Require at least one isolated muon
    if (N_IsoMuon >= 1 && triggerIsoMu24) {
 
+     //This function fills for you a set of histogramms every time it is called. Don't forget to define it in MyAnalysis.h
      FillHistos(hists_nocuts);
 
-     //This function fills for you a set of histogramms every time it is called. Don't forget to define it in MyAnalysis.h
+     
      
      // Have a look at your histograms and compare the different background samples.
      // Try to enrich the fraction of ttbar by cutting on any of the distributions 
@@ -468,6 +469,7 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
      
      /*
      if(muon1->Pt()>MuonPtCut){
+
      }
      */
 
@@ -506,16 +508,16 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
 
 
      
-     //The 3 lines below are working - un-comment them! Just make sure to apply your event selection before ;)
+     //The 3 lines below are working - un-comment them! Just make sure to apply your new event selection before ;)
      /*
        vector<pair<TLorentzVector,TLorentzVector>> ttbarreco = ReconstructTTbar(2);
        pair<TLorentzVector, TLorentzVector> tt_best = SelectBestTTbarHypothesis(ttbarreco);
        m_top_avg = (tt_best.first.M() + tt_best.second.M())/2;
      */
 
+
+     
      // You should implement a new set of histograms to be filled here, otherwise you can't analyze anything... 
-
-
 
 
 

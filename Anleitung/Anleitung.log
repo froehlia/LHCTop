@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.8)  13 AUG 2018 22:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.8)  16 AUG 2018 09:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -946,7 +946,7 @@ f>
 (epstopdf)             \includegraphics on input line 81.
 Package epstopdf Info: Output file is already uptodate.
 
-<Theorie/toppairfeynman-eps-converted-to.pdf, id=204, 466.74374pt x 472.76625pt
+<Theorie/toppairfeynman-eps-converted-to.pdf, id=203, 466.74374pt x 472.76625pt
 >
 File: Theorie/toppairfeynman-eps-converted-to.pdf Graphic file (type pdf)
  <use Theorie/toppairfeynman-eps-converted-to.pdf>
@@ -954,7 +954,7 @@ Package pdftex.def Info: Theorie/toppairfeynman-eps-converted-to.pdf used on in
 put line 81.
 (pdftex.def)             Requested size: 373.3955pt x 378.2135pt.
 
-<Theorie/herapdf2.png, id=205, 1117.17375pt x 1011.78pt>
+<Theorie/herapdf2.png, id=204, 1117.17375pt x 1011.78pt>
 File: Theorie/herapdf2.png Graphic file (type png)
 
 <use Theorie/herapdf2.png>
@@ -987,23 +987,22 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 103.
 [10 <./Theorie/toppairfeynman-eps-converted-to.pdf>]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 103.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 103.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 103.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 103.
- [11 <./Theorie/herapdf2.png>] <Theorie/ttproductioncrosssection_new.pdf, id=25
-0, 569.12625pt x 385.44pt>
+<Theorie/ttproductioncrosssection_new.pdf, id=240, 569.12625pt x 385.44pt>
 File: Theorie/ttproductioncrosssection_new.pdf Graphic file (type pdf)
 
 <use Theorie/ttproductioncrosssection_new.pdf>
 Package pdftex.def Info: Theorie/ttproductioncrosssection_new.pdf used on input
  line 106.
 (pdftex.def)             Requested size: 398.38567pt x 269.80615pt.
-
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 109.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 109.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 109.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 109.
+ [11 <./Theorie/herapdf2.png>]
 
 LaTeX Warning: File `Theorie/singletopfeynman.eps' not found on input line 113.
 
@@ -1018,7 +1017,7 @@ ps-converted-to.pdf Theorie/singletopfeynman.eps>
 (epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
 
-<Theorie/singletopfeynman-eps-converted-to.pdf, id=253, 466.74374pt x 431.6125p
+<Theorie/singletopfeynman-eps-converted-to.pdf, id=252, 466.74374pt x 431.6125p
 t>
 File: Theorie/singletopfeynman-eps-converted-to.pdf Graphic file (type pdf)
  <use Theorie/singletopfeynman-eps-converted-to.pdf>
@@ -1030,7 +1029,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 123.
 
-<Theorie/leadingorderttproduction-eps-converted-to.pdf, id=259, 463.7325pt x 33
+<Theorie/leadingorderttproduction-eps-converted-to.pdf, id=258, 463.7325pt x 33
 5.2525pt>
 File: Theorie/leadingorderttproduction-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1064,7 +1063,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 137.
 [12 <./Theorie/ttproductioncrosssection_new.pdf>]
-Underfull \vbox (badness 2096) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 150.
@@ -1116,7 +1115,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 
-<LHC/CERNkomplex.jpg, id=340, 1094.0875pt x 696.6025pt>
+<LHC/CERNkomplex.jpg, id=339, 1094.0875pt x 696.6025pt>
 File: LHC/CERNkomplex.jpg Graphic file (type jpg)
 
 <use LHC/CERNkomplex.jpg>
@@ -1126,15 +1125,6 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 15.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 15.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 19.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 19.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 19.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 19.
- [17 <./LHC/CERNkomplex.jpg>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
@@ -1143,43 +1133,43 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 29.
+ [17]
+Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 36.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 36.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 38.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 38.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 38.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 38.
- [18]
+
 Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
-<LHC/cms_complete.png, id=371, 845.1575pt x 597.23125pt>
+<LHC/cms_complete.png, id=364, 845.1575pt x 597.23125pt>
 File: LHC/cms_complete.png Graphic file (type png)
 
 <use LHC/cms_complete.png>
 Package pdftex.def Info: LHC/cms_complete.png used on input line 43.
 (pdftex.def)             Requested size: 422.57771pt x 298.61488pt.
-
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 50.
+ [18]
 Overfull \hbox (16.20958pt too wide) in paragraph at lines 50--53
 \T1/cmr/m/n/12 Ka-lo-ri-me-ter. Das elek-tro-ma-gne-ti-sche Ka-lo-ri-me-ter (be
 -ste-hend aus 80.000 Bleiwolframat-
  []
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 53.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 53.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 53.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 53.
-[19 <./LHC/cms_complete.png (PNG copy)>]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 56.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1193,10 +1183,20 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 91.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 91.
- [20]
+ [19]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 91.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 91.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 91.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 91.
+ [20 <./LHC/CERNkomplex.jpg> <./LHC/cms_complete.png (PNG copy)>]
 \openout2 = `dataset.aux'.
 
- (./dataset.tex
+
+(./dataset.tex
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1217,8 +1217,7 @@ Package babel Info: Redefining ngerman shorthand "~
 ]
 \openout2 = `analysis.aux'.
 
-
-(./analysis.tex
+ (./analysis.tex
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1317,12 +1316,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 96.
 
-Overfull \hbox (25.33838pt too wide) in paragraph at lines 99--100
-[]\T1/cmr/m/n/12 Für die Be-re-chung des Wir-kungs-quer-schnitts be-nö-ti-gen S
-ie die Ak-zep-tanz(Signaleffizienz)
- []
-
-
 Overfull \hbox (5.11511pt too wide) in paragraph at lines 100--101
 \T1/cmr/m/n/12 Ereignissen nach der Se-lek-ti-on vor-her-sagt. Be-stim-men Sie 
 die An-zahl an Top-Antitop-
@@ -1374,38 +1367,37 @@ Package babel Info: Redefining ngerman shorthand "~
 [29
 
 
-
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 57.
+(babel)             in language  on input line 59.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 57.
+(babel)             in language  on input line 59.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 57.
+(babel)             in language  on input line 59.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 57.
+(babel)             in language  on input line 59.
  [30]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 66.
+(babel)             in language  on input line 68.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 66.
+(babel)             in language  on input line 68.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 86.
+(babel)             in language  on input line 87.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 86.
+(babel)             in language  on input line 87.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 86.
+(babel)             in language  on input line 87.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 86.
+(babel)             in language  on input line 87.
  [31])
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 101.
+(babel)             in language  on input line 100.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 101.
+(babel)             in language  on input line 100.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 101.
+(babel)             in language  on input line 100.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 101.
+(babel)             in language  on input line 100.
  [32]
 \openout2 = `eval.aux'.
 
@@ -1421,13 +1413,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
 )
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 103.
+(babel)             in language  on input line 102.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 103.
+(babel)             in language  on input line 102.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 103.
+(babel)             in language  on input line 102.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 103.
+(babel)             in language  on input line 102.
  [33
 
 
@@ -1471,29 +1463,29 @@ c2/sources/source.htm,
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
  [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
  (./Anleitung.aux (./introduction.aux) (./theorie.aux) (./lhc.aux)
 (./dataset.aux) (./analysis.aux) (./topreco.aux) (./eval.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 108.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 108.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 107.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 107.
 Package rerunfilecheck Info: File `Anleitung.out' has not changed.
-(rerunfilecheck)             Checksum: D870C26B7FEE38FB27E13668C292EEB9;1741.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
+(rerunfilecheck)             Checksum: 5222815FF861AC1E772B6D50BBC72011;1776.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 107.
  ) 
 Here is how much of TeX's memory you used:
  9972 strings out of 494860
- 137160 string characters out of 6177603
- 237615 words of memory out of 5000000
+ 137180 string characters out of 6177603
+ 237473 words of memory out of 5000000
  12860 multiletter control sequences out of 15000+600000
  24775 words of font info for 64 fonts, out of 8000000 for 9000
  100 hyphenation exceptions out of 8191
@@ -1532,9 +1524,9 @@ ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Anleitung.pdf (36 pages, 3005045 bytes).
+Output written on Anleitung.pdf (36 pages, 3003843 bytes).
 PDF statistics:
- 1085 PDF objects out of 1200 (max. 8388607)
+ 1079 PDF objects out of 1200 (max. 8388607)
  515 compressed objects within 6 object streams
  134 named destinations out of 1000 (max. 500000)
  230 words of extra memory for PDF output out of 10000 (max. 10000000)
