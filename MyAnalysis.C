@@ -465,11 +465,11 @@ Bool_t MyAnalysis::Process(Long64_t entry) {
      
      // Have a look at your histograms and compare the different background samples.
      // Try to enrich the fraction of ttbar by cutting on any of the distributions 
-     // Plot all variables after every cut you introduce
+     // Plot all variables after every cut you introduce. Therefore define a new set of Histogramms in Analysis.h  e.g. hist_muoncut     
      
      /*
      if(muon1->Pt()>MuonPtCut){
-
+   
      }
      */
 
