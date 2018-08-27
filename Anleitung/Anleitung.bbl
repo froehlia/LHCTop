@@ -1,11 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{ref:stoever}
-M.~Stoever.
-\newblock {Messung des ttbar-Wirkungsquerschnitts bei hohen invarianten Massen
-  am LHC}.
-\newblock Master's thesis, University of Hamburg, Germany, 2014.
-
 \bibitem{Griffiths}
 David~J Griffiths.
 \newblock {\em {Introduction to Elementary Particles}}.
@@ -22,16 +16,6 @@ Particle Data~Group Collaboration.
 \newblock {Review of Particle Physics, 2012-2013. Review of Particle
   Properties}.
 \newblock {\em Phys. Rev. D}, 86(1):010001, 2012.
-
-\bibitem{cdftopquark}
-CDF Collaboration.
-\newblock {Observation of top quark production in $\bar{p}p$ collisions}.
-\newblock {\em Phys.Rev.Lett.}, 74:2626--2631, 1995.
-
-\bibitem{d0topquark}
-D0~Collaboration.
-\newblock {Observation of the top quark}.
-\newblock {\em Phys.Rev.Lett.}, 74:2632--2637, 1995.
 
 \bibitem{ATLAS:2014wva}
 {First combination of Tevatron and LHC measurements of the top-quark mass}.
@@ -72,8 +56,7 @@ Nikolaos Kidonakis.
 \newblock pages 831--834, 2012.
 
 \bibitem{prodcrosssectionatlascms}
-\url{https://twiki.cern.ch/twiki/bin/view/CMSPublic/PhysicsResultsTOPSummaryPl%
-ots}.
+\url{https://twiki.cern.ch/twiki/bin/view/CMSPublic/PhysicsResultsTOPSummaryPlots}.
 
 \bibitem{Lancaster:2011wr}
 CDF and D0~Collaboration.
@@ -101,11 +84,6 @@ C.~Grupen.
 \newblock {\em {Particle Detectors}}.
 \newblock 1996.
 
-\bibitem{cernkomplex}
-Christiane Lefèvre.
-\newblock {The CERN accelerator complex. Complexe des accélérateurs du CERN}.
-\newblock http://cdsweb.cern.ch/record/1260465, Dec 2008.
-
 \bibitem{duoplasma}
 {The CERN Hadron Ion Sources}.
 \newblock http://linac2.home.cern.ch/linac2/sources/source.htm, Januar 2014.
@@ -125,9 +103,32 @@ Jr. Alves, A.~Augusto et~al.
 \newblock {The LHCb Detector at the LHC}.
 \newblock {\em JINST}, 3:S08005, 2008.
 
+\bibitem{cernkomplex}
+Christiane Lefèvre.
+\newblock {The CERN accelerator complex. Complexe des accélérateurs du CERN}.
+\newblock http://cdsweb.cern.ch/record/1260465, Dec 2008.
+
 \bibitem{Chatrchyan:2008aa}
 S.~Chatrchyan et~al.
 \newblock {The CMS experiment at the CERN LHC}.
 \newblock {\em JINST}, 3:S08004, 2008.
+
+\bibitem{Sirunyan:2270046}
+CMS Collaboration.
+\newblock {Particle-flow reconstruction and global event description with the
+  CMS detector. Particle-flow reconstruction and global event description with
+  the CMS detector}.
+\newblock {\em JINST}, 12(CMS-PRF-14-001. CMS-PRF-14-001-004. 10):P10003. 82 p,
+  Jun 2017.
+\newblock Replaced with the published version. Added the journal reference and
+  DOI. All the figures and tables can be found at
+  http://cms-results.web.cern.ch/cms-results/public-results/publications/PRF-14-001
+  (CMS Public Pages).
+
+\bibitem{Khachatryan:2016kdb}
+CMS Collaboration.
+\newblock {Jet energy scale and resolution in the CMS experiment in pp
+  collisions at 8 TeV}.
+\newblock {\em JINST}, 12(02):P02014, 2017.
 
 \end{thebibliography}
