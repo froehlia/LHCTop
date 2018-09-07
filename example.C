@@ -6,6 +6,7 @@
 #include <TString.h>
 #include <TGraphAsymmErrors.h>
 #include <string>
+#include <memory>
 
 int main() {
    
@@ -60,7 +61,7 @@ int main() {
    // ...
 
 
-   for(int i = 0; i < processes.size(); i++){
+   for(unsigned int i = 0; i < processes.size(); i++){
    
      MyAnalysis* A = new MyAnalysis();
      std::unique_ptr<TChain> ch;
@@ -167,7 +168,7 @@ int main() {
      TString histname = foldername + "/mtop_rec";
      TH1D* h_mtop_data = (TH1D*)infile_data->Get(histname);
 
-     for(int i = 0; i < processes.size(); i++){
+     for(unsigned int i = 0; i < processes.size(); i++){
      
        // Open all root files containing the histograms
        TString myfilename = filename_base + "_" + processes[i].second + ".root";
@@ -178,7 +179,7 @@ int main() {
 
        //Subtract non-ttbar from data
        if(processes[i].first != "Data" && processes[i].first != "TTbar") h_mtop_data->Add(myhist, -1);
-       for(unsigned int j=1; j<h_mtop_data->GetNbinsX()+1; j++){
+       for(int j=1; j<h_mtop_data->GetNbinsX()+1; j++){
 	 if(h_mtop_data->GetBinContent(j) < 0.){
 	   h_mtop_data->SetBinContent(j,0.);
 	   h_mtop_data->SetBinError(j,0.);
