@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.8.23)  16 AUG 2018 09:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.18)  4 FEB 2019 16:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **analysis.tex
 (./analysis.tex
-LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 10 language(s) loaded.
 ! Undefined control sequence.
 l.1 \section
             {Vorbereitung (vor Praktikumsbeginn)}
@@ -1097,6 +1097,9 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no ( in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -7729,6 +7732,15 @@ Missing character: There is no z in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no B in font nullfont!
 Missing character: There is no . in font nullfont!
+! Undefined control sequence.
+l.103 ...en Ergebnis von ATLAS oder CMS (z.B. \url
+                                                  {http://arxiv.org/pdf/1108...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 Missing character: There is no h in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -7766,7 +7778,7 @@ Missing character: There is no f in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
 l.106 \subsection
-                 {Aufgabe 3: Rekonstruktion der Top-Quark-Masse}
+                 {Aufgabe 3: Rekonstruktion der Top Quark Masse}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -7802,13 +7814,11 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no T in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no p in font nullfont!
-Missing character: There is no - in font nullfont!
 Missing character: There is no Q in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
-Missing character: There is no - in font nullfont!
 Missing character: There is no M in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -9026,7 +9036,7 @@ Overfull \hbox (45.11086pt too wide) in paragraph at lines 119--120
 
 ! Undefined control sequence.
 l.122 \left(P_{\text
-                    {W}}\right)^2 = \left(P_{\mu}\right)^2 + \left(P_{\nu}\r...
+                    {W}}\right)^2 = \left(P_{\mu} + P_{\nu}\right)^2,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -9034,8 +9044,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (101.04292pt too wide) detected at line 123
-[][] \/cmr/m/n/10 = [][] + [][] \OML/cmm/m/it/10 ;
+Overfull \hbox (93.22333pt too wide) detected at line 123
+[][] \/cmr/m/n/10 = [][] \OML/cmm/m/it/10 ;
  []
 
 Missing character: There is no w in font nullfont!
@@ -9255,6 +9265,50 @@ Overfull \hbox (25.93236pt too wide) in paragraph at lines 131--132
  $\OML/cmm/m/it/10 E[]$
  []
 
+! Undefined control sequence.
+<argument> p_{\text 
+                    {T},\mu }^2
+l.134 ...\frac{\mu\,p_{z,\mu}}{p_{\text{T},\mu}^2}
+                                                   \pm \sqrt{\frac{\mu^2p_{z...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> p_{\text 
+                    {T},\mu }^4
+l.134 ...rac{\mu^2p_{z,\mu}^2}{p_{\text{T},\mu}^4}
+                                                  -\frac{E_\mu^2\,p_{\text{T...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> E_\mu ^2\,p_{\text 
+                              {T},\nu }^2-\mu ^2
+l.134 ...text{T},\nu}^2-\mu^2}{p_{\text{T},\mu}^2}
+                                                  },
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> p_{\text 
+                    {T},\mu }^2
+l.134 ...text{T},\nu}^2-\mu^2}{p_{\text{T},\mu}^2}
+                                                  },
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 Overfull \hbox (176.65253pt too wide) detected at line 135
 \OML/cmm/m/it/10 p[] \/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ^^F []\OML/cmm/m/it/10 
@@ -9267,7 +9321,25 @@ Missing character: There is no b in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no i in font nullfont!
 ! Undefined control sequence.
-l.137 ...= M_W^2 / 2 + p_{T,\mu}\,p_{T,\nu}\,\text
+l.137 \noindent wobei $\mu = M_W^2 / 2 + p_{\text
+                                                 {T},\mu}\,p_{\text{T},\nu}\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.137 ... = M_W^2 / 2 + p_{\text{T},\mu}\,p_{\text
+                                                  {T},\nu}\,\text{cos}\Delta...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.137 ...p_{\text{T},\mu}\,p_{\text{T},\nu}\,\text
                                                   {cos}\Delta\phi$ und $p_{\...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -14801,11 +14873,11 @@ Missing character: There is no ! in font nullfont!
 
  
 Here is how much of TeX's memory you used:
- 33 strings out of 493304
- 409 string characters out of 6139871
- 65880 words of memory out of 5000000
- 3587 multiletter control sequences out of 15000+600000
+ 33 strings out of 494860
+ 410 string characters out of 6177601
+ 59975 words of memory out of 5000000
+ 3436 multiletter control sequences out of 15000+600000
  4294 words of font info for 16 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
+ 36 hyphenation exceptions out of 8191
  19i,5n,16p,728b,168s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!
